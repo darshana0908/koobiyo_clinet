@@ -38,6 +38,9 @@ dependencies:
   responsive_framework: ^1.1.1
   flutter_sizer:
   flutter_staggered_animations: ^1.1.1
+  lottie: ^3.0.0
+  page_transition: ^2.1.0
+  fl_chart: ^0.66.0
 
 dev_dependencies:
   flutter_test:
