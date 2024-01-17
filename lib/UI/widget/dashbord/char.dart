@@ -31,7 +31,7 @@ class CustomChart extends StatelessWidget {
         touchTooltipData: BarTouchTooltipData(
           tooltipBgColor: Colors.transparent,
           tooltipPadding: EdgeInsets.zero,
-          tooltipMargin: 8,
+          tooltipMargin: 20,
           getTooltipItem: (
             BarChartGroupData group,
             int groupIndex,
@@ -41,7 +41,7 @@ class CustomChart extends StatelessWidget {
             return BarTooltipItem(
               rod.toY.round().toString(),
               const TextStyle(
-                color: Colors.cyan,
+                color: Color.fromARGB(255, 1, 27, 31),
                 fontWeight: FontWeight.bold,
               ),
             );
@@ -51,7 +51,7 @@ class CustomChart extends StatelessWidget {
 
   Widget getTitles(double value, TitleMeta meta) {
     final style = TextStyle(
-      color: Colors.blue,
+      color: const Color.fromARGB(255, 1, 22, 39),
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );
@@ -94,7 +94,7 @@ class CustomChart extends StatelessWidget {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 60,
             getTitlesWidget: getTitles,
           ),
         ),
@@ -114,7 +114,7 @@ class CustomChart extends StatelessWidget {
       );
 
   LinearGradient get _barsGradient => LinearGradient(
-        colors: [red, brown],
+        colors: [const Color.fromARGB(255, 51, 0, 60), Color.fromARGB(255, 1, 58, 19)],
         begin: Alignment.bottomCenter,
         end: Alignment.topCenter,
       );

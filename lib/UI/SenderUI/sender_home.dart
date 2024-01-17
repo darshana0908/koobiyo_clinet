@@ -54,12 +54,10 @@ class SenderHome extends StatelessWidget {
                   preferredSize: Size(w, h / 15),
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: serchBarr(context),
+                    child: SizedBox(width: ScreenSize().checkScreenType(context) == 'tab' ? w / 2 : w, child: serchBarr(context)),
                   )),
             ),
-      drawer: ScreenSize().checkScreenType(context) == 'web'
-          ? null
-          : customDrawer(),
+      drawer: ScreenSize().checkScreenType(context) == 'web' ? null : customDrawer(),
       body: SizedBox(
           width: w,
           child: ScreenSize().checkScreenType(context) == 'web'
@@ -74,21 +72,17 @@ class SenderHome extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 50),
                             child: SingleChildScrollView(
-                              child: Container(
-                                  width: w - w / 5,
-                                  height: h,
-                                  child: DashBoard()),
+                              child: Container(width: w - w / 5, height: h, child: DashBoard()),
                             ),
                           ),
                           Container(
                             height: 50,
-                            color: Colors.transparent,
+                            color: backgroundColor,
                             width: w - w / 5,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                SizedBox(
-                                    width: w / 5, child: serchBarr(context)),
+                                SizedBox(width: w / 5, child: serchBarr(context)),
                                 IconButton(
                                     onPressed: () {},
                                     icon: Icon(
@@ -149,8 +143,7 @@ class SenderHome extends StatelessWidget {
                 validator: (value) {},
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),

@@ -39,8 +39,7 @@ class _customDrawerState extends State<customDrawer> {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 1000, sigmaY: 10),
         child: Drawer(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             backgroundColor: white.withOpacity(0.4),
             child: SingleChildScrollView(child: CustomDrawerWidget())),
       ),
@@ -60,11 +59,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
   int selectedIndex = 1;
   List buttonList = [
     {'icon': Icons.grid_view_rounded, 'text': 'DashBoard', 'id': 1},
-    {
-      'icon': Icons.shopping_cart_checkout_rounded,
-      'text': 'All Orders',
-      'id': 2
-    },
+    {'icon': Icons.shopping_cart_checkout_rounded, 'text': 'All Orders', 'id': 2},
     {'icon': Icons.home_outlined, 'text': 'Finance', 'id': 3},
     {'icon': Icons.copy, 'text': 'Reports', 'id': 4},
     {'icon': Icons.money_off, 'text': 'Delivery Rates', 'id': 5},
@@ -95,19 +90,13 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
           Container(
             height: h / 1.2,
             width: w,
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(300)),
-                color: brown),
+            decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomRight: Radius.circular(300)), color: brown),
           ),
           Container(
             height: h / 1.8,
             width: w,
             decoration: BoxDecoration(
-                boxShadow: [BoxShadow(blurRadius: 2000)],
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(300)),
-                color: red),
+                boxShadow: [BoxShadow(blurRadius: 2000)], borderRadius: BorderRadius.only(bottomRight: Radius.circular(300)), color: red),
           ),
           Container(
             height: h,
@@ -123,10 +112,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                 ),
                 ScreenSize().checkScreenType(context) != 'web'
                     ? Container(
-                        alignment:
-                            ScreenSize().checkScreenType(context) == 'tab'
-                                ? Alignment.centerLeft
-                                : Alignment.centerRight,
+                        alignment: ScreenSize().checkScreenType(context) == 'tab' ? Alignment.centerLeft : Alignment.centerRight,
                         child: IconButton(
                             onPressed: () {
                               Navigator.pop(context);
@@ -225,21 +211,17 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                 ])
                                               : titleIndex == 5
                                                   ? Column(children: [
-                                                      tileButton(
-                                                          'Create Issues', () {
+                                                      tileButton('Create Issues', () {
                                                         setState(() {
                                                           key = '9';
                                                         });
                                                       }, '9', key),
-                                                      tileButton('All Issues',
-                                                          () {
+                                                      tileButton('All Issues', () {
                                                         setState(() {
                                                           key = '10';
                                                         });
                                                       }, '10', key),
-                                                      tileButton(
-                                                          'Resolved Issues',
-                                                          () {
+                                                      tileButton('Resolved Issues', () {
                                                         setState(() {
                                                           key = '11';
                                                         });
@@ -247,31 +229,24 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                     ])
                                                   : titleIndex == 6
                                                       ? Column(children: [
-                                                          tileButton('Barcodes',
-                                                              () {
+                                                          tileButton('Barcodes', () {
                                                             setState(() {
                                                               key = '12';
                                                             });
                                                           }, '12', key),
-                                                          tileButton(
-                                                              'Pickup Requests',
-                                                              () {
+                                                          tileButton('Pickup Requests', () {
                                                             setState(() {
                                                               key = '13';
                                                             });
                                                           }, '13', key),
                                                         ])
                                                       : Column(children: [
-                                                          tileButton(
-                                                              'HO Contacts',
-                                                              () {
+                                                          tileButton('HO Contacts', () {
                                                             setState(() {
                                                               key = '14';
                                                             });
                                                           }, '14', key),
-                                                          tileButton(
-                                                              'Branch Contacts',
-                                                              () {
+                                                          tileButton('Branch Contacts', () {
                                                             setState(() {
                                                               key = '15';
                                                             });
@@ -324,7 +299,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                         fontSize: 12.sp,
                       )),
                   Icon(
-                    Icons.add,
+                    Icons.arrow_forward_ios_rounded,
                     color: Colors.green,
                     size: 20,
                   )
