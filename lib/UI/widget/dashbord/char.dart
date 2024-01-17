@@ -8,7 +8,10 @@ class CustomChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    return SizedBox(
+      height: h / 3,
       child: BarChart(
         BarChartData(
           barTouchData: barTouchData,

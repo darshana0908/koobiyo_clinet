@@ -5,7 +5,16 @@ import '../../../const/color.dart';
 import '../../../const/const.dart';
 
 class DashboardCard extends StatefulWidget {
-  const DashboardCard({super.key});
+  const DashboardCard(
+      {super.key,
+      required this.color,
+      required this.icon,
+      required this.text,
+      required this.text2});
+  final Color color;
+  final IconData icon;
+  final String text;
+  final String text2;
 
   @override
   State<DashboardCard> createState() => _DashboardCardState();
@@ -25,19 +34,19 @@ class _DashboardCardState extends State<DashboardCard> {
           width:
               ScreenSize().checkScreenType(context) == 'web' ? w / 6 : w / 2.5,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(
+                ScreenSize().checkScreenType(context) == 'web' ? 20 : 8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   children: [
                     Card(
-                      color: Colors.green,
+                      color: widget.color,
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Icon(
-                          Icons.account_balance_wallet_sharp,
-                          size: 45,
+                          widget.icon,
                           color: white,
                         ),
                       ),
@@ -48,7 +57,7 @@ class _DashboardCardState extends State<DashboardCard> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Koobiyo Delivery',
+                            widget.text,
                             style: TextStyle(
                               fontSize: 12.dp,
                               color: black2,
@@ -56,7 +65,7 @@ class _DashboardCardState extends State<DashboardCard> {
                             ),
                           ),
                           Text(
-                            '100',
+                            widget.text2,
                             style: TextStyle(
                               fontSize: 22.dp,
                               color: black2,
@@ -67,20 +76,6 @@ class _DashboardCardState extends State<DashboardCard> {
                       ),
                     ),
                   ],
-                ),
-                Container(
-                  height: 6,
-                  width: w,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      const Color.fromARGB(255, 46, 5, 2),
-                      const Color.fromARGB(255, 4, 52, 92)
-                    ]),
-                    color: red,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)),
-                  ),
                 ),
               ],
             ),

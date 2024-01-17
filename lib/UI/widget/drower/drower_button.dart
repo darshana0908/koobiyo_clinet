@@ -9,15 +9,19 @@ class CustomDrawerButton extends StatefulWidget {
   const CustomDrawerButton(
       {super.key,
       required this.icon,
-      required this.myPage,
       required this.text,
+      required this.color,
+      required this.list,
+      required this.onTap,
       required this.isTap,
-      required this.onTap});
+      required this.firstIndex});
   final String text;
   final IconData icon;
-  final Widget myPage;
-  final bool isTap;
+  final Color color;
+  final Widget list;
   final VoidCallback onTap;
+  final bool isTap;
+  final int firstIndex;
 
   @override
   State<CustomDrawerButton> createState() => _CustomDrawerButtonState();
@@ -29,64 +33,78 @@ class _CustomDrawerButtonState extends State<CustomDrawerButton> {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    return InkWell(
-      borderRadius: BorderRadius.circular(5),
-      onTap: widget.onTap,
-      onTapDown: (_) {
-        setState(() {
-          tap = true;
-        });
-      },
-      onSecondaryTapDown: (_) {
-        setState(() {
-          tap = true;
-        });
-      },
-      onSecondaryTapUp: (_) {
-        setState(() {
-          tap = false;
-        });
-      },
-      onTapUp: (_) {
-        setState(() {
-          tap = false;
-        });
-      },
-      onTapCancel: () {
-        setState(() {
-          tap = false;
-        });
-      },
-      child: AnimatedOpacity(
-        opacity: tap ? 0.2 : 1,
-        duration: Duration(milliseconds: 60),
+    return AnimatedOpacity(
+      opacity: tap ? 0.2 : 1,
+      duration: Duration(milliseconds: 60),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(10),
           ),
-          color: white.withOpacity(0.9),
+          color: widget.color,
           child: SizedBox(
-            height: h / 12,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: Column(
               children: [
-                Icon(
-                  widget.icon,
-                  color: black2,
-                ),
-                SizedBox(
-                  width: ScreenSize().checkScreenType(context) == 'web'
-                      ? w / 30
-                      : w / 15,
-                ),
-                Text(
-                  widget.text,
-                  style: TextStyle(
-                    fontSize: 12.dp,
-                    color: black2,
-                    fontWeight: FontWeight.bold,
+                InkWell(
+                  borderRadius: BorderRadius.circular(10),
+                  onTap: widget.onTap,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: SizedBox(
+                      width: w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Icon(
+                            widget.icon,
+                            color: white,
+                          ),
+                          SizedBox(
+                            width:
+                                ScreenSize().checkScreenType(context) == 'web'
+                                    ? w / 30
+                                    : w / 15,
+                          ),
+                          Text(
+                            widget.text,
+                            style: TextStyle(
+                              fontSize: 12.dp,
+                              color: white1,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Spacer(),
+                          // Icon(
+                          //   widget.isTap
+                          //       ? Icons.keyboard_arrow_up_rounded
+                          //       : Icons.keyboard_arrow_down_rounded,
+                          //   color: white,
+                          // ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
+                widget.isTap
+                    ? widget.firstIndex == 1
+                        ? SizedBox()
+                        : Divider()
+                    : SizedBox(),
+                widget.isTap
+                    ? widget.firstIndex == 1
+                        ? SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: widget.list,
+                          )
+                    : SizedBox()
               ],
             ),
           ),
