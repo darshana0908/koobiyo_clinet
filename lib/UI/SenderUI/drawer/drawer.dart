@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:client_app/UI/SenderUI/drawer/dashbord/dashbord.dart';
 import 'package:client_app/provider/provider.dart';
 import 'package:expansion_tile_group/expansion_tile_group.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../const/color.dart';
 import '../../../const/const.dart';
 import '../../widget/drower/drower_button.dart';
+import 'all_order/add_order/add_oder.dart';
 
 class customDrawer extends StatefulWidget {
   const customDrawer({super.key});
@@ -39,7 +41,8 @@ class _customDrawerState extends State<customDrawer> {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 1000, sigmaY: 10),
         child: Drawer(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             backgroundColor: white.withOpacity(0.4),
             child: SingleChildScrollView(child: CustomDrawerWidget())),
       ),
@@ -59,7 +62,11 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
   int selectedIndex = 1;
   List buttonList = [
     {'icon': Icons.grid_view_rounded, 'text': 'DashBoard', 'id': 1},
-    {'icon': Icons.shopping_cart_checkout_rounded, 'text': 'All Orders', 'id': 2},
+    {
+      'icon': Icons.shopping_cart_checkout_rounded,
+      'text': 'All Orders',
+      'id': 2
+    },
     {'icon': Icons.home_outlined, 'text': 'Finance', 'id': 3},
     {'icon': Icons.copy, 'text': 'Reports', 'id': 4},
     {'icon': Icons.money_off, 'text': 'Delivery Rates', 'id': 5},
@@ -90,182 +97,221 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
           Container(
             height: h / 1.2,
             width: w,
-            decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomRight: Radius.circular(300)), color: brown),
+            decoration: BoxDecoration(
+                boxShadow: [BoxShadow(blurRadius: 2000)],
+                borderRadius:
+                    BorderRadius.only(bottomRight: Radius.circular(300)),
+                color: brown),
           ),
           Container(
             height: h / 1.8,
             width: w,
             decoration: BoxDecoration(
-                boxShadow: [BoxShadow(blurRadius: 2000)], borderRadius: BorderRadius.only(bottomRight: Radius.circular(300)), color: red),
+                boxShadow: [BoxShadow(blurRadius: 2000)],
+                borderRadius:
+                    BorderRadius.only(bottomRight: Radius.circular(300)),
+                color: red),
           ),
           Container(
             height: h,
             width: w,
             color: black.withOpacity(0.5),
           ),
-          SingleChildScrollView(
-            child: Column(
-              // Important: Remove any padding from the ListView.
-              children: [
-                SizedBox(
-                  height: 15,
-                ),
-                ScreenSize().checkScreenType(context) != 'web'
-                    ? Container(
-                        alignment: ScreenSize().checkScreenType(context) == 'tab' ? Alignment.centerLeft : Alignment.centerRight,
-                        child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: black2,
-                            )),
-                      )
-                    : SizedBox(),
-                SizedBox(
-                  height: h / 30,
-                ),
-                Text(
-                  'Koobiyo Delivery',
-                  style: TextStyle(
-                    fontSize: 22.dp,
-                    color: white1,
-                    fontWeight: FontWeight.normal,
+          SizedBox(
+            height: h,
+            child: SingleChildScrollView(
+              child: Column(
+                // Important: Remove any padding from the ListView.
+                children: [
+                  SizedBox(
+                    height: 15,
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: h,
-                  child: ListView.builder(
-                    itemCount: buttonList.length,
-                    itemBuilder: (context, index) {
-                      return CustomDrawerButton(
-                          firstIndex: buttonList[index]['id'],
-                          isTap: titleIndex == buttonList[index]['id'],
-                          onTap: () {
-                            setState(() {
-                              if (titleIndex == buttonList[index]['id']) {
-                                // If the tapped item is already selected, unselect it
-                                titleIndex = 1;
-                              } else {
-                                // Otherwise, select the tapped item
-                                titleIndex = buttonList[index]['id'];
+                  ScreenSize().checkScreenType(context) != 'web'
+                      ? Container(
+                          alignment:
+                              ScreenSize().checkScreenType(context) == 'tab'
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                          child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
+                                Icons.close,
+                                color: white2,
+                              )),
+                        )
+                      : SizedBox(),
+                  SizedBox(
+                    height: h / 30,
+                  ),
+                  Text(
+                    'Koombiyo Delivery',
+                    style: TextStyle(
+                      fontSize: 22.dp,
+                      color: white1,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: h,
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: buttonList.length,
+                      itemBuilder: (context, index) {
+                        return CustomDrawerButton(
+                            firstIndex: buttonList[index]['id'],
+                            isTap: titleIndex == buttonList[index]['id'],
+                            onTap: () {
+                              print(buttonList[index]['id']);
+                              if (buttonList[index]['id'] == 1) {
+                                Provider.of<ProviderS>(context, listen: false)
+                                    .selectedWidet = DashBoard();
+                                setState(() {
+                                  key = '100';
+                                });
                               }
-                            });
-                          },
-                          list: titleIndex == 0
-                              ? SizedBox()
-                              : titleIndex == 1
-                                  ? SizedBox()
-                                  : titleIndex == 2
-                                      ? Column(children: [
-                                          tileButton('Add Orders', () {
-                                            setState(() {
-                                              key = '1';
-                                            });
-                                          }, '1', key),
-                                          tileButton('Upload Orders', () {
-                                            setState(() {
-                                              key = '2';
-                                            });
-                                          }, '2', key),
-                                          tileButton('View Orders', () {
-                                            setState(() {
-                                              key = '3';
-                                            });
-                                          }, '3', key),
-                                          tileButton('Return Receive', () {
-                                            setState(() {
-                                              key = '4';
-                                            });
-                                          }, '4', key)
-                                        ])
-                                      : titleIndex == 3
-                                          ? Column(children: [
-                                              tileButton('Order Report', () {
-                                                setState(() {
-                                                  key = '5';
-                                                });
-                                              }, '5', key),
-                                              tileButton('Delivery Report', () {
-                                                setState(() {
-                                                  key = '6';
-                                                });
-                                              }, '6', key),
-                                              tileButton('Complete Orders', () {
-                                                setState(() {
-                                                  key = '7';
-                                                });
-                                              }, '7', key),
-                                            ])
-                                          : titleIndex == 4
-                                              ? Column(children: [
-                                                  tileButton('Rare Card', () {
-                                                    setState(() {
-                                                      key = '8';
-                                                    });
-                                                  }, '8', key),
-                                                ])
-                                              : titleIndex == 5
-                                                  ? Column(children: [
-                                                      tileButton('Create Issues', () {
-                                                        setState(() {
-                                                          key = '9';
-                                                        });
-                                                      }, '9', key),
-                                                      tileButton('All Issues', () {
-                                                        setState(() {
-                                                          key = '10';
-                                                        });
-                                                      }, '10', key),
-                                                      tileButton('Resolved Issues', () {
-                                                        setState(() {
-                                                          key = '11';
-                                                        });
-                                                      }, '11', key),
-                                                    ])
-                                                  : titleIndex == 6
-                                                      ? Column(children: [
-                                                          tileButton('Barcodes', () {
-                                                            setState(() {
-                                                              key = '12';
-                                                            });
-                                                          }, '12', key),
-                                                          tileButton('Pickup Requests', () {
-                                                            setState(() {
-                                                              key = '13';
-                                                            });
-                                                          }, '13', key),
-                                                        ])
-                                                      : Column(children: [
-                                                          tileButton('HO Contacts', () {
-                                                            setState(() {
-                                                              key = '14';
-                                                            });
-                                                          }, '14', key),
-                                                          tileButton('Branch Contacts', () {
-                                                            setState(() {
-                                                              key = '15';
-                                                            });
-                                                          }, '15', key),
-                                                        ]),
-                          color: buttonList[index]['id'] == 0
-                              ? white.withOpacity(0.2)
-                              : titleIndex == buttonList[index]['id']
-                                  ? white.withOpacity(0.2)
-                                  : black.withOpacity(0.5),
-                          icon: buttonList[index]['icon'],
-                          text: buttonList[index]['text']);
-                    },
+                              setState(() {
+                                if (titleIndex == buttonList[index]['id']) {
+                                  // If the tapped item is already selected, unselect it
+                                  titleIndex = 1;
+                                } else {
+                                  // Otherwise, select the tapped item
+                                  titleIndex = buttonList[index]['id'];
+                                }
+                              });
+                            },
+                            list: titleIndex == 0
+                                ? SizedBox()
+                                : titleIndex == 1
+                                    ? SizedBox()
+                                    : titleIndex == 2
+                                        ? Column(children: [
+                                            tileButton('Add Orders', () {
+                                              Provider.of<ProviderS>(context,
+                                                      listen: false)
+                                                  .selectedWidet = AddOrder();
+                                              setState(() {
+                                                key = '1';
+                                              });
+                                            }, '1', key),
+                                            tileButton('Upload Orders', () {
+                                              setState(() {
+                                                key = '2';
+                                              });
+                                            }, '2', key),
+                                            tileButton('View Orders', () {
+                                              setState(() {
+                                                key = '3';
+                                              });
+                                            }, '3', key),
+                                            tileButton('Return Receive', () {
+                                              setState(() {
+                                                key = '4';
+                                              });
+                                            }, '4', key)
+                                          ])
+                                        : titleIndex == 3
+                                            ? Column(children: [
+                                                tileButton('Order Report', () {
+                                                  setState(() {
+                                                    key = '5';
+                                                  });
+                                                }, '5', key),
+                                                tileButton('Delivery Report',
+                                                    () {
+                                                  setState(() {
+                                                    key = '6';
+                                                  });
+                                                }, '6', key),
+                                                tileButton('Complete Orders',
+                                                    () {
+                                                  setState(() {
+                                                    key = '7';
+                                                  });
+                                                }, '7', key),
+                                              ])
+                                            : titleIndex == 4
+                                                ? Column(children: [
+                                                    tileButton('Rare Card', () {
+                                                      setState(() {
+                                                        key = '8';
+                                                      });
+                                                    }, '8', key),
+                                                  ])
+                                                : titleIndex == 5
+                                                    ? Column(children: [
+                                                        tileButton(
+                                                            'Create Issues',
+                                                            () {
+                                                          setState(() {
+                                                            key = '9';
+                                                          });
+                                                        }, '9', key),
+                                                        tileButton('All Issues',
+                                                            () {
+                                                          setState(() {
+                                                            key = '10';
+                                                          });
+                                                        }, '10', key),
+                                                        tileButton(
+                                                            'Resolved Issues',
+                                                            () {
+                                                          setState(() {
+                                                            key = '11';
+                                                          });
+                                                        }, '11', key),
+                                                      ])
+                                                    : titleIndex == 6
+                                                        ? Column(children: [
+                                                            tileButton(
+                                                                'Barcodes', () {
+                                                              setState(() {
+                                                                key = '12';
+                                                              });
+                                                            }, '12', key),
+                                                            tileButton(
+                                                                'Pickup Requests',
+                                                                () {
+                                                              setState(() {
+                                                                key = '13';
+                                                              });
+                                                            }, '13', key),
+                                                          ])
+                                                        : Column(children: [
+                                                            tileButton(
+                                                                'HO Contacts',
+                                                                () {
+                                                              setState(() {
+                                                                key = '14';
+                                                              });
+                                                            }, '14', key),
+                                                            tileButton(
+                                                                'Branch Contacts',
+                                                                () {
+                                                              setState(() {
+                                                                key = '15';
+                                                              });
+                                                            }, '15', key),
+                                                          ]),
+                            color: buttonList[index]['id'] == 0
+                                ? white.withOpacity(0.2)
+                                : titleIndex == buttonList[index]['id']
+                                    ? white.withOpacity(0.2)
+                                    : black.withOpacity(0.5),
+                            icon: buttonList[index]['icon'],
+                            text: buttonList[index]['text']);
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-              ],
+                  SizedBox(
+                    height: 15,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -4,8 +4,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
-class CustomChart extends StatelessWidget {
-  const CustomChart();
+class CustomChart2 extends StatelessWidget {
+  const CustomChart2();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomChart extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: BarChart(
           BarChartData(
-            backgroundColor: bacground2,
+            backgroundColor: black,
             barTouchData: barTouchData,
             titlesData: titlesData,
             borderData: FlBorderData(
@@ -45,8 +45,8 @@ class CustomChart extends StatelessWidget {
           ) {
             return BarTooltipItem(
               rod.toY.round().toString(),
-              TextStyle(
-                color: white2,
+              const TextStyle(
+                color: Color.fromARGB(255, 1, 27, 31),
                 fontWeight: FontWeight.bold,
               ),
             );
@@ -54,42 +54,58 @@ class CustomChart extends StatelessWidget {
         ),
       );
 
-  Widget getTitles(double value, TitleMeta meta) {
+  Widget getTitlesMonth(double value, TitleMeta meta) {
     final style = TextStyle(
-      color: white3,
-      fontWeight: FontWeight.normal,
-      fontSize: 14,
+      color: white2,
+      fontWeight: FontWeight.bold,
+      fontSize: 9,
     );
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Mn';
+        text = 'Jan';
         break;
       case 1:
-        text = 'Te';
+        text = 'Feb';
         break;
       case 2:
-        text = 'Wd';
+        text = 'Mar';
         break;
       case 3:
-        text = 'Tu';
+        text = 'Ap';
         break;
       case 4:
-        text = 'Fr';
+        text = 'May';
         break;
       case 5:
-        text = 'St';
+        text = 'Jun';
         break;
       case 6:
-        text = 'Sn';
+        text = 'Jul';
         break;
+      case 7:
+        text = 'Aug';
+        break;
+      case 8:
+        text = 'Sep';
+        break;
+      case 9:
+        text = 'Oct';
+        break;
+      case 10:
+        text = 'Nov';
+        break;
+      case 11:
+        text = 'Dec';
+        break;
+
       default:
         text = '';
         break;
     }
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 4,
+      space: 2,
       child: Text(text, style: style),
     );
   }
@@ -97,15 +113,15 @@ class CustomChart extends StatelessWidget {
   FlTitlesData get titlesData => FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
-          axisNameSize: 20,
+          axisNameSize: 18,
           axisNameWidget: Text(
-            'Daily Orders',
+            'Monthly Orders',
             style: TextStyle(color: white2, fontSize: 14.dp),
           ),
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 40,
-            getTitlesWidget: getTitles,
+            reservedSize: 30,
+            getTitlesWidget: getTitlesMonth,
           ),
         ),
         leftTitles: AxisTitles(
@@ -128,17 +144,25 @@ class CustomChart extends StatelessWidget {
         show: false,
       );
 
+  LinearGradient get _barsGradient => LinearGradient(
+        colors: [
+          const Color.fromARGB(255, 51, 0, 60),
+          Color.fromARGB(255, 1, 58, 19)
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
+
   List<BarChartGroupData> get barGroups => [
         BarChartGroupData(
-          showingTooltipIndicators: [0],
-          barsSpace: 10,
+          barsSpace: 1,
           x: 0,
           barRods: [
             BarChartRodData(
                 borderRadius: BorderRadius.circular(3),
                 toY: 8,
-                color: red,
-                width: 20)
+                color: white3,
+                width: 10)
           ],
         ),
         BarChartGroupData(
@@ -147,8 +171,8 @@ class CustomChart extends StatelessWidget {
             BarChartRodData(
                 borderRadius: BorderRadius.circular(3),
                 toY: 10,
-                color: Colors.green,
-                width: 20)
+                color: white3,
+                width: 10)
           ],
         ),
         BarChartGroupData(
@@ -156,8 +180,8 @@ class CustomChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               borderRadius: BorderRadius.circular(3),
-              color: brown,
-              width: 20,
+              color: white3,
+              width: 10,
               toY: 14,
             )
           ],
@@ -167,8 +191,8 @@ class CustomChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               borderRadius: BorderRadius.circular(3),
-              color: blue,
-              width: 20,
+              color: white3,
+              width: 10,
               toY: 15,
             )
           ],
@@ -178,8 +202,8 @@ class CustomChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               borderRadius: BorderRadius.circular(3),
-              color: black,
-              width: 20,
+              color: white3,
+              width: 10,
               toY: 13,
             )
           ],
@@ -189,20 +213,74 @@ class CustomChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               borderRadius: BorderRadius.circular(3),
-              color: bacground2,
-              width: 20,
+              color: white3,
+              width: 10,
               toY: 10,
             )
           ],
         ),
         BarChartGroupData(
-          barsSpace: 2,
           x: 6,
           barRods: [
             BarChartRodData(
               borderRadius: BorderRadius.circular(3),
-              color: Colors.deepOrange,
-              width: 20,
+              color: white3,
+              width: 10,
+              toY: 100,
+            )
+          ],
+        ),
+        BarChartGroupData(
+          x: 7,
+          barRods: [
+            BarChartRodData(
+              borderRadius: BorderRadius.circular(3),
+              color: white3,
+              width: 10,
+              toY: 100,
+            )
+          ],
+        ),
+        BarChartGroupData(
+          x: 8,
+          barRods: [
+            BarChartRodData(
+              borderRadius: BorderRadius.circular(3),
+              color: white3,
+              width: 10,
+              toY: 100,
+            )
+          ],
+        ),
+        BarChartGroupData(
+          x: 9,
+          barRods: [
+            BarChartRodData(
+              borderRadius: BorderRadius.circular(3),
+              color: white3,
+              width: 10,
+              toY: 100,
+            )
+          ],
+        ),
+        BarChartGroupData(
+          x: 10,
+          barRods: [
+            BarChartRodData(
+              borderRadius: BorderRadius.circular(3),
+              color: white3,
+              width: 10,
+              toY: 100,
+            )
+          ],
+        ),
+        BarChartGroupData(
+          x: 11,
+          barRods: [
+            BarChartRodData(
+              borderRadius: BorderRadius.circular(3),
+              color: white3,
+              width: 10,
               toY: 100,
             )
           ],
