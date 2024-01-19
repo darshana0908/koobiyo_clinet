@@ -45,6 +45,11 @@ dependencies:
   provider: ^6.1.1
   simple_speed_dial: ^0.1.7
   text_scroll: ^0.2.0
+  dotted_border: ^2.1.0
+  data_table_2: ^2.5.10
+  pdf: ^3.10.7
+  flutter_web_data_table: ^1.0.0
+  paged_datatable: ^1.4.4
 
 dev_dependencies:
   flutter_test:

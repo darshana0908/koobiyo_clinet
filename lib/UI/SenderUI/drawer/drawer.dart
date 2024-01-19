@@ -9,8 +9,11 @@ import 'package:provider/provider.dart';
 
 import '../../../const/color.dart';
 import '../../../const/const.dart';
+import '../../../main.dart';
 import '../../widget/drower/drower_button.dart';
 import 'all_order/add_order/add_oder.dart';
+import 'data.dart';
+import 'view_oders/view_orders.dart';
 
 class customDrawer extends StatefulWidget {
   const customDrawer({super.key});
@@ -199,16 +202,29 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                               });
                                             }, '1', key),
                                             tileButton('Upload Orders', () {
+                                              Provider.of<ProviderS>(context,
+                                                          listen: false)
+                                                      .selectedWidet =
+                                                  DataTableScreen();
+
                                               setState(() {
                                                 key = '2';
                                               });
                                             }, '2', key),
                                             tileButton('View Orders', () {
+                                              Provider.of<ProviderS>(context,
+                                                      listen: false)
+                                                  .selectedWidet = ViewOrders();
                                               setState(() {
                                                 key = '3';
                                               });
                                             }, '3', key),
                                             tileButton('Return Receive', () {
+                                              Provider.of<ProviderS>(context,
+                                                          listen: false)
+                                                      .selectedWidet =
+                                                  DataTableText();
+
                                               setState(() {
                                                 key = '4';
                                               });

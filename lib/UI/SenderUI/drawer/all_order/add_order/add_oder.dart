@@ -1,6 +1,8 @@
 import 'package:client_app/const/color.dart';
 import 'package:client_app/const/const.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:text_scroll/text_scroll.dart';
@@ -38,45 +40,6 @@ class _AddOrderState extends State<AddOrder> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 100),
-        child: SpeedDial(
-          child: Icon(Icons.add),
-          closedForegroundColor: Colors.black,
-          openForegroundColor: Colors.white,
-          closedBackgroundColor: Colors.white,
-          openBackgroundColor: Colors.black,
-          // labelsStyle: /* Your label TextStyle goes here */
-          labelsBackgroundColor: Colors.white,
-          // controller: /* Your custom animation controller goes here */,
-          speedDialChildren: <SpeedDialChild>[
-            SpeedDialChild(
-              child: Icon(Icons.directions_run),
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.red,
-              label: 'Let\'s start a run!',
-              onPressed: () {
-                setState(() {
-                  // _text = 'You pressed \"Let\'s start a run!\"';
-                });
-              },
-              closeSpeedDialOnPressed: false,
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.directions_walk),
-              foregroundColor: Colors.black,
-              backgroundColor: Colors.yellow,
-              label: 'Let\'s go for a walk!',
-              onPressed: () {
-                setState(() {
-                  // _text = 'You pressed \"Let\'s go for a walk!\"';
-                });
-              },
-            ),
-            //  Your other SpeedDialChildren go here.
-          ],
-        ),
-      ),
       backgroundColor: brown,
       body: SingleChildScrollView(
         child: AnimationLimiter(
@@ -118,11 +81,11 @@ class _AddOrderState extends State<AddOrder> {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Text(
-
-                    //   style: TextStyle(
-                    //       color: white, fontSize: 18, fontWeight: FontWeight.bold),
-                    // ),
+                    SizedBox(
+                      height: ScreenSize().checkScreenType(context) == 'web'
+                          ? 0
+                          : 135,
+                    ),
                     Container(
                       color: white.withOpacity(0.2),
                       child: TextScroll(
@@ -133,43 +96,141 @@ class _AddOrderState extends State<AddOrder> {
                     SizedBox(
                       height: 20,
                     ),
-
-                    Row(
-                      children: [
-                        Card(
-                          color: white.withOpacity(0.3),
-                          child: Column(
-                            children: [
-                              DialogButton(
-                                  text: "Select Order Template",
-                                  onTap: () {},
-                                  buttonHeight: h / 12,
-                                  width: w / 5,
-                                  color: black),
-                              DialogButton(
-                                  text: "Save ",
-                                  onTap: () {},
-                                  buttonHeight: h / 12,
-                                  width: w / 5,
-                                  color: black),
-                              DialogButton(
-                                  text: "Save ",
-                                  onTap: () {},
-                                  buttonHeight: h / 12,
-                                  width: w / 5,
-                                  color: black),
-                            ],
-                          ),
-                        ),
-                        addOder(),
-                      ],
-                    )
+                    ScreenSize().checkScreenType(context) == 'web'
+                        ? SizedBox(
+                            width: w - w / 10,
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  addOder(),
+                                  Spacer(),
+                                  uploadOder(),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                uploadOder(),
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                addOder(),
+                              ],
+                            ),
+                          )
                   ],
                 ),
               )
             ]),
           ),
         )),
+      ),
+    );
+  }
+
+  uploadOder() {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    return SizedBox(
+      width: ScreenSize().checkScreenType(context) == 'web' ? w / 4 : w,
+      child: Card(
+        color: white,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text(
+                'Upload New Orders',
+                style: TextStyle(
+                    color: black, fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 13,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(border: Border.all()),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Download Template',
+                            style: TextStyle(
+                                color: black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(Icons.file_download_outlined),
+                        ],
+                      ),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: DottedBorder(
+                  color: Colors.black38,
+                  borderType: BorderType.RRect,
+                  radius: Radius.circular(12),
+                  padding: EdgeInsets.all(6),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: h / 7,
+                      width: w / 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.cloud_upload_outlined,
+                            size: 40,
+                            color: Color.fromARGB(95, 149, 146, 146),
+                          ),
+                          Text('Please upload \nyour File',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black38,
+                                fontSize: 12.dp,
+                              )),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              DialogButton(
+                  text: "Upload",
+                  onTap: () {},
+                  buttonHeight: h / 12,
+                  width: ScreenSize().checkScreenType(context) == 'web'
+                      ? w / 5
+                      : w,
+                  color: black),
+              SizedBox(
+                height: h / 10,
+                width: w,
+                child: Icon(
+                  Icons.file_copy,
+                  size: 40,
+                  color: black3,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -182,7 +243,7 @@ class _AddOrderState extends State<AddOrder> {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: SizedBox(
-          width: w / 2,
+          width: ScreenSize().checkScreenType(context) == 'web' ? w / 2 : w,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -246,22 +307,20 @@ class _AddOrderState extends State<AddOrder> {
                           )),
                     ),
                   ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Flexible(
-                    child: TextField(
-                      style: TextStyle(color: white),
-                      decoration: InputDecoration(
-                          hintText: 'Customer Name',
-                          hintStyle: TextStyle(color: white2),
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: white2,
-                          )),
-                    ),
-                  ),
                 ],
+              ),
+              SizedBox(
+                height: 13,
+              ),
+              TextField(
+                style: TextStyle(color: white),
+                decoration: InputDecoration(
+                    hintText: 'Customer Name',
+                    hintStyle: TextStyle(color: white2),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: white2,
+                    )),
               ),
               SizedBox(
                 height: 13,
