@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_data_table/web_data_table.dart';
@@ -20,6 +21,15 @@ class _DataTableTextState extends State<DataTableText> {
   List<String> _selectedRowKeys = [];
   int _rowsPerPage = 10;
   List<SampleDataRow> sampleDataRowsa = [];
+  List newdata = [
+    {
+      "id": 1004,
+      "primerNombre": "Carlos",
+      "primerApellido": "Marroquin",
+      "createdAt": "2022-12-14T18:05:42.157Z"
+    }
+  ];
+
   List DataList = [
     'Orde Date',
     'Waybill Id',
@@ -42,17 +52,31 @@ class _DataTableTextState extends State<DataTableText> {
   getData() {
     final List<SampleDataRow> sampleDataRowsa = List.generate(
       DataList.length,
-      (index) => SampleDataRow.fromList([
-        '001',
-        '${DataList[index]}',
-        'Internet Explorer 4.0',
-        'Win 95+',
-        '4',
-        'X',
-        '2020-10-10 13:30:30',
-      ]),
+      (index) {
+        return SampleDataRow.fromList([
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+          'ddddd',
+        ]);
+      },
     );
-    print(sampleDataRowsa[0].browser);
+    // print(sampleDataRowsa.map((row) => row.values).toList());
     setState(() {
       sampleDataRowsa.map((row) => row.values).toList();
     });
@@ -66,6 +90,7 @@ class _DataTableTextState extends State<DataTableText> {
   @override
   void initState() {
     getData();
+    main();
     super.initState();
     _sortColumnName = 'browser';
     _sortAscending = false;
@@ -88,6 +113,19 @@ class _DataTableTextState extends State<DataTableText> {
     });
   }
 
+  main() {
+    List<String> stringList = ["one", "two", "three"];
+    List<Map<String, dynamic>> mapList = [];
+
+    for (var element in stringList) {
+      mapList.add({"name": element, "selected": false});
+    }
+
+    print(mapList);
+    return mapList;
+  }
+
+  List<Map<String, dynamic>> s = [];
   @override
   void dispose() {
     super.dispose();
@@ -261,7 +299,12 @@ class _DataTableTextState extends State<DataTableText> {
                         return value.toString();
                       }),
                 ],
-                rows: getData(),
+                rows: main(),
+                // sampleDataRowsa.map((row) {
+                //   print(row);
+                //   return row.values;
+                // }).toList(),
+
                 selectedRowKeys: _selectedRowKeys,
                 onTapRow: (rows, index) {
                   print('onTapRow(): index = $index, row = ${rows[index]}');
@@ -304,46 +347,52 @@ class _DataTableTextState extends State<DataTableText> {
 }
 
 class SampleDataRow {
-  SampleDataRow._({
-    required this.dateTime,
-    required this.Orde_Date,
-    required this.Waybill_Id,
-    required this.Order_No,
-    required this.Name,
-    required this.Phone,
-    required this.Address,
-    required this.Description,
-    required this.Internal_Remarks,
-    required this.Koombiyo_Remarks,
-    required this.COD,
-    required this.Del_Chrg,
-    required this.Branch,
-    required this.Status,
-    required this.Print,
-    required this.More,
-    required this.Delete,
-  });
+  SampleDataRow._(
+      {
+      // required this.dateTime,
+      required this.Orde_Date,
+      required this.Waybill_Id,
+      required this.Order_No,
+      required this.Name,
+      required this.Phone,
+      required this.Address,
+      required this.Description,
+      required this.Internal_Remarks,
+      required this.Koombiyo_Remarks,
+      required this.COD,
+      required this.Del_Chrg,
+      required this.Branch,
+      required this.Status,
+      required this.Print,
+      required this.More,
+      required this.Delete,
+      required this.Bulk_Select,
+      required this.date});
 
   factory SampleDataRow.fromList(List<String> values) {
+    print(values[5]);
     return SampleDataRow._(
-      Orde_Date: values[0],
-      id: values[0],
-      renderingEngine: values[1],
-      browser: values[2],
-      platform: values[3],
-      engineVersion: values[4],
-      cssGrade: values[5],
-      dateTime: DateTime.parse(values[6]),
-    );
+        Orde_Date: values[5],
+        Waybill_Id: values[1],
+        Address: values[2],
+        Branch: values[3],
+        COD: values[4],
+        Del_Chrg: values[5],
+        Delete: values[6],
+        Description: values[7],
+        Internal_Remarks: values[8],
+        Koombiyo_Remarks: values[9],
+        More: values[10],
+        Name: values[11],
+        Order_No: values[12],
+        Phone: values[13],
+        Print: values[14],
+        Status: values[15],
+        Bulk_Select: values[16],
+        date: 'ss'
+        // dateTime: DateTime.parse(DateTime.now().toString()),
+        );
   }
-
-  // final String id;
-  // final String renderingEngine;
-  // final String browser;
-  // final String platform;
-  // final String engineVersion;
-  // final String cssGrade;
-  final DateTime dateTime;
 
   final String Orde_Date;
   final String Waybill_Id;
@@ -362,31 +411,28 @@ class SampleDataRow {
   final String More;
   final String Delete;
   final String Bulk_Select;
+  final String date;
 
   Map<String, dynamic> get values {
     return {
- 'Orde_Date':Orde_Date,
-    'Waybill_Id':Waybill_Id,
-    'Order_No':Order_No,
-    'Name':Name,
-    'Phone':Phone,
-    'Address':Address,
-    'Description':Description,
-    'Internal Remarks':Internal_Remarks,
-    'Koombiyo Remarks':Koombiyo_Remarks,
-    'COD':COD,
-    'Del.Chrg':Del_Chrg,
-    'Branch':Branch,
-    'Status':Status,
-    'Print':Print,
-    'More':More,
-    'Delete':Delete,
-    'Bulk Select':Bulk_Select
-
-
-
-
-      
+      'Orde Date': Orde_Date,
+      'Waybill Id': Waybill_Id,
+      'Order No': Order_No,
+      'Name': Name,
+      'Phone': Phone,
+      'Address': Address,
+      'Description': Description,
+      'Internal Remarks': Internal_Remarks,
+      'Koombiyo Remarks': Koombiyo_Remarks,
+      'COD': COD,
+      'Del.Chrg': Del_Chrg,
+      'Branch': Branch,
+      'Status': Status,
+      'Print': Print,
+      'More': More,
+      'Delete': Delete,
+      'Bulk Select': Bulk_Select,
+      'date': date,
     };
   }
 }

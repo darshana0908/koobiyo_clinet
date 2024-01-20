@@ -1,108 +1,197 @@
 import 'dart:math';
 
 import 'package:client_app/const/color.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../const/const.dart';
-
-class ViewOrders extends StatefulWidget {
-  const ViewOrders({Key? key}) : super(key: key);
-
+class ViewOrders extends StatelessWidget {
   @override
-  State<ViewOrders> createState() => _ViewOrdersState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyDataTable(),
+    );
+  }
 }
 
-class _ViewOrdersState extends State<ViewOrders> {
-  final DataTableSource _data = MyData();
+class MyDataTable extends StatefulWidget {
+  @override
+  _MyDataTableState createState() => _MyDataTableState();
+}
+
+class _MyDataTableState extends State<MyDataTable> {
+  TextEditingController _searchController = TextEditingController();
+  List<DataRow> _filteredRows = [];
+  String selectedValue = "10";
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("10"), value: "10"),
+      DropdownMenuItem(child: Text("20"), value: "20"),
+      DropdownMenuItem(child: Text("30"), value: "30"),
+      DropdownMenuItem(child: Text("All"), value: "All"),
+    ];
+    return menuItems;
+  }
+
+  List<DataRow> _rows = [
+    DataRow(cells: [
+      DataCell(Text('John')),
+      DataCell(Text('Jane')),
+      DataCell(Text('Smith')),
+      DataCell(Text('25')),
+      DataCell(Text('John')),
+      DataCell(Text('Jane')),
+      DataCell(Text('Smith')),
+      DataCell(Text('25')),
+      DataCell(Text('John')),
+      DataCell(Text('Jane')),
+      DataCell(Text('Smith')),
+      DataCell(Text('25')),
+      DataCell(Text('John')),
+      DataCell(Text('Jane')),
+      DataCell(Text('Smith')),
+      DataCell(Text('25')),
+      DataCell(Text('25')),
+    ]),
+
+    // Add more rows as needed
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredRows = List.from(_rows);
+    _searchController.addListener(() {
+      filterSearchResults();
+    });
+  }
+
+  void filterSearchResults() {
+    List<DataRow> _searchResults = [];
+    if (_searchController.text.isNotEmpty) {
+      for (DataRow row in _rows) {
+        for (DataCell cell in row.cells) {
+          if (cell.child is Text &&
+              (cell.child as Text)
+                  .data!
+                  .toLowerCase()
+                  .contains(_searchController.text.toLowerCase())) {
+            _searchResults.add(row);
+            break;
+          }
+        }
+      }
+    } else {
+      _searchResults = List.from(_rows);
+    }
+    setState(() {
+      _filteredRows = _searchResults;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: ScreenSize().checkScreenType(context) == 'web' ? 0 : 135,
-            ),
-            Card(
-              child: PaginatedDataTable(
-                dataRowHeight: h / 15,
-                sortAscending: true,
-                headingRowColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 243, 226, 255)),
-                showFirstLastButtons: true,
-                actions: [
-                  SizedBox(
-                    width: ScreenSize().checkScreenType(context) == 'web'
-                        ? w / 4
-                        : w / 2,
+      appBar: AppBar(
+        title: Text('DataTable with Search'),
+      ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: h / 17,
+                  width: w / 15,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                          width: 0.3, color: black1.withOpacity(0.5))),
+                  child: DropdownButton(
+                      isExpanded: true,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedValue = value!;
+                        });
+                      },
+                      value: selectedValue,
+                      items: dropdownItems),
+                ),
+              ),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: w / 7,
                     height: h / 17,
                     child: TextField(
+                      controller: _searchController,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(8),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        filled: true,
-                        hintStyle: TextStyle(fontWeight: FontWeight.w300),
-                        hintText: "search",
-                        fillColor: Color.fromARGB(179, 226, 215, 215),
+                        labelText: 'Search',
+                        border: OutlineInputBorder(),
                       ),
                     ),
-                  )
-                ],
-
-                arrowHeadColor: red,
-                onSelectAll: (value) {
-                  print(value);
-                  print('ddddaaaaaaaaddddd');
-                },
-                // onRowsPerPageChanged: (value) {
-                //   print(value);
-                //   print('ddddddddd');
-                // },
-                onPageChanged: (value) {
-                  print(value);
-                },
-                source: _data,
-                header: const Text('My Products'),
-                primary: true,
-                columns: const [
-                  DataColumn(label: Text('Orde Date')),
-                  DataColumn(label: Text('Waybill Id')),
-                  DataColumn(label: Text('Order No')),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Card(
+              elevation: 20,
+              child: DataTable(
+                headingRowColor:
+                    MaterialStateProperty.all(AppColors.borderColor),
+                columnSpacing: 10,
+                border: TableBorder.all(
+                  color: Colors.black12,
+                  width: 0.5,
+                ),
+                columns: [
+                  DataColumn(
+                      numeric: true,
+                      onSort: (columnIndex, ascending) {},
+                      tooltip: 'Orde Date',
+                      label: Text(
+                        'Orde Date',
+                        textWidthBasis: TextWidthBasis.parent,
+                      )),
+                  DataColumn(
+                      tooltip: 'Orde Date',
+                      label: Text(
+                        'Waybill Id',
+                      )),
+                  DataColumn(tooltip: 'Orde Date', label: Text('Order\nNo')),
                   DataColumn(label: Text('Name')),
                   DataColumn(label: Text('Phone')),
                   DataColumn(label: Text('Address')),
-                  DataColumn(label: Text('Description')),
-                  DataColumn(label: Text('Internal Remarks')),
-                  DataColumn(label: Text('Koombiyo Remarks')),
+                  DataColumn(label: SizedBox(child: Text('Description'))),
+                  DataColumn(label: SizedBox(child: Text('Internal\nRemarks'))),
+                  DataColumn(
+                      label: SizedBox(child: Text('Koombiyo \nRemarks'))),
                   DataColumn(label: Text('COD')),
-                  DataColumn(label: Text('Del.Chrg')),
+                  DataColumn(label: Text('Del\nChrg')),
                   DataColumn(label: Text('Branch')),
                   DataColumn(label: Text('Status')),
                   DataColumn(label: Text('Print')),
                   DataColumn(label: Text('More')),
                   DataColumn(label: Text('Delete')),
-                  DataColumn(label: Text('Bulk Select'))
+                  DataColumn(label: Text('Bulk\nSelect'))
                 ],
-                columnSpacing: 35,
-                horizontalMargin: 20,
-                rowsPerPage: 10,
-                showCheckboxColumn: false,
+                rows: _filteredRows,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-// The "soruce" of the table
 class MyData extends DataTableSource {
   // Generate some made-up data
   final List<Map<String, dynamic>> _data = List.generate(
@@ -140,50 +229,5 @@ class MyData extends DataTableSource {
       DataCell(Text(_data[index]['id'].toString())),
       DataCell(Text(_data[index]["title"])),
     ]);
-  }
-}
-
-/// Example without a datasource
-class DataTableScreen extends StatelessWidget {
-  const DataTableScreen();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: DataTable2(
-          border: TableBorder.all(),
-          columnSpacing: 12,
-          horizontalMargin: 12,
-          minWidth: 600,
-          columns: [
-            DataColumn2(
-              label: Text('Column A'),
-              size: ColumnSize.L,
-            ),
-            DataColumn(
-              label: Text('Column B'),
-            ),
-            DataColumn(
-              label: Text('Column C'),
-            ),
-            DataColumn(
-              label: Text('Column D'),
-            ),
-            DataColumn(
-              label: Text('Column NUMBERS'),
-              numeric: true,
-            ),
-          ],
-          rows: List<DataRow>.generate(
-              100,
-              (index) => DataRow(cells: [
-                    DataCell(Text('A' * (10 - index % 10))),
-                    DataCell(Text('B' * (10 - (index + 5) % 10))),
-                    DataCell(Text('C' * (15 - (index + 5) % 10))),
-                    DataCell(Text('D' * (15 - (index + 10) % 10))),
-                    DataCell(Text(((index + 0.1) * 25.4).toString()))
-                  ]))),
-    );
   }
 }

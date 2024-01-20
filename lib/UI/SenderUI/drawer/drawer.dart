@@ -13,6 +13,7 @@ import '../../../main.dart';
 import '../../widget/drower/drower_button.dart';
 import 'all_order/add_order/add_oder.dart';
 import 'data.dart';
+import 'view_oders/testing.dart';
 import 'view_oders/view_orders.dart';
 
 class customDrawer extends StatefulWidget {
@@ -202,10 +203,10 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                               });
                                             }, '1', key),
                                             tileButton('Upload Orders', () {
-                                              Provider.of<ProviderS>(context,
-                                                          listen: false)
-                                                      .selectedWidet =
-                                                  DataTableScreen();
+                                              // Provider.of<ProviderS>(context,
+                                              //             listen: false)
+                                              //         .selectedWidet =
+                                              //     // DataTableScreen();
 
                                               setState(() {
                                                 key = '2';
@@ -233,6 +234,12 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                         : titleIndex == 3
                                             ? Column(children: [
                                                 tileButton('Order Report', () {
+                                                  Provider.of<ProviderS>(
+                                                              context,
+                                                              listen: false)
+                                                          .selectedWidet =
+                                                      Testing();
+
                                                   setState(() {
                                                     key = '5';
                                                   });
