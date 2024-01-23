@@ -40,16 +40,20 @@ class _DashBoardState extends State<DashBoard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                DashboardCard(
-                    color: Colors.brown,
-                    icon: Icons.pix_rounded,
-                    text: 'Processing',
-                    text2: '100'),
-                DashboardCard(
-                    text: 'Collected',
-                    text2: '20',
-                    color: Color.fromARGB(255, 184, 179, 88),
-                    icon: Icons.card_travel)
+                Flexible(
+                  child: DashboardCard(
+                      color: Colors.brown,
+                      icon: Icons.pix_rounded,
+                      text: 'Processing',
+                      text2: '100'),
+                ),
+                Flexible(
+                  child: DashboardCard(
+                      text: 'Collected',
+                      text2: '20',
+                      color: Color.fromARGB(255, 184, 179, 88),
+                      icon: Icons.card_travel),
+                )
               ],
             ),
             Row(

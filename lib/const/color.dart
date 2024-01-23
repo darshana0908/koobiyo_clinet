@@ -34,7 +34,7 @@ Color logogray3 = Color(0xff548499);
 Color appliteBlue = Color.fromARGB(255, 6, 101, 148);
 Color red = Color(0xffd7488f);
 Color brown = Color(0xffdcd3d3);
-
+Color darkBlue = Color.fromARGB(255, 0, 21, 57).withOpacity(0.7);
 
 class AppColors {
   static const Color primary = contentColorCyan;

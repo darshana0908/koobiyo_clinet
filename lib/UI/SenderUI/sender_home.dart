@@ -22,13 +22,21 @@ class SenderHome extends StatelessWidget {
         appBar: ScreenSize().checkScreenType(context) == 'web'
             ? null
             : AppBar(
-                iconTheme: IconThemeData(color: white2),
+                actionsIconTheme: IconThemeData(
+                    size: ScreenSize().checkScreenType(context) == 'small'
+                        ? 10
+                        : 20),
+                iconTheme: IconThemeData(
+                    color: white2,
+                    size: ScreenSize().checkScreenType(context) == 'small'
+                        ? 10
+                        : 20),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30))),
                 backgroundColor: Color.fromARGB(255, 52, 2, 67),
-                actions: appBarButton,
+                actions: appBarButtonn(context),
                 bottom: PreferredSize(
                     preferredSize: Size(w, h / 15),
                     child: Padding(
@@ -73,7 +81,7 @@ class SenderHome extends StatelessWidget {
                                   SizedBox(
                                       width: w / 5, child: serchBarr(context)),
                                   Row(
-                                    children: appBarButton,
+                                    children: appBarButtonn(context),
                                   ),
                                   SizedBox(
                                     width: 12,
@@ -91,36 +99,67 @@ class SenderHome extends StatelessWidget {
     );
   }
 
-  List<Widget> appBarButton = [
-    IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.grid_view_outlined,
-          color: white2,
-          size: 20,
-        )),
-    IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.directions_subway_filled_rounded,
-          color: white2,
-          size: 20,
-        )),
-    IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.view_list_sharp,
-          color: white2,
-          size: 20,
-        )),
-    IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.notification_important_sharp,
-          color: white2,
-          size: 20,
-        )),
-  ];
+  appBarButtonn(BuildContext context) {
+    List<Widget> appBarButton = [
+      IconButton(
+          autofocus: true,
+          padding: ScreenSize().checkScreenType(context) == 'small'
+              ? EdgeInsets.all(0)
+              : null,
+          onPressed: () {},
+          icon: FittedBox(
+            child: Icon(
+              Icons.grid_view_outlined,
+              color: white2,
+              size:
+                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
+            ),
+          )),
+      IconButton(
+          autofocus: true,
+          padding: ScreenSize().checkScreenType(context) == 'small'
+              ? EdgeInsets.all(0)
+              : null,
+          onPressed: () {},
+          icon: FittedBox(
+            child: Icon(
+              size:
+                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
+              Icons.directions_subway_filled_rounded,
+              color: white2,
+            ),
+          )),
+      IconButton(
+          autofocus: true,
+          padding: ScreenSize().checkScreenType(context) == 'small'
+              ? EdgeInsets.all(2)
+              : null,
+          onPressed: () {},
+          icon: FittedBox(
+            child: Icon(
+              size:
+                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
+              Icons.view_list_sharp,
+              color: white2,
+            ),
+          )),
+      IconButton(
+          autofocus: true,
+          padding: ScreenSize().checkScreenType(context) == 'small'
+              ? EdgeInsets.all(2)
+              : null,
+          onPressed: () {},
+          icon: FittedBox(
+            child: Icon(
+              size:
+                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
+              Icons.notification_important_sharp,
+              color: white2,
+            ),
+          )),
+    ];
+    return appBarButton;
+  }
 
   Widget serchBarr(BuildContext con) {
     var h = MediaQuery.of(con).size.height;

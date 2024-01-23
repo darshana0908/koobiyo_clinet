@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import '../../../const/color.dart';
-import '../../../const/const.dart';
+import '../../../../../const/color.dart';
+import '../../../../../const/const.dart';
 
-class DashboardCard extends StatefulWidget {
-  const DashboardCard(
+class PaymentCard extends StatefulWidget {
+  const PaymentCard(
       {super.key,
       required this.color,
       required this.icon,
       required this.text,
-      required this.text2});
+      required this.text2,
+      required this.text3});
   final Color color;
   final IconData icon;
   final String text;
   final String text2;
+  final String text3;
 
   @override
-  State<DashboardCard> createState() => _DashboardCardState();
+  State<PaymentCard> createState() => _PaymentCardState();
 }
 
-class _DashboardCardState extends State<DashboardCard> {
+class _PaymentCardState extends State<PaymentCard> {
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -30,23 +32,19 @@ class _DashboardCardState extends State<DashboardCard> {
       child: AnimationConfiguration.synchronized(
         child: Card(
           elevation: 20,
-          color: Color.fromARGB(255, 10, 38, 86).withOpacity(0.7),
+          color: black.withOpacity(0.7),
           child: Card(
-            color: Color.fromARGB(255, 0, 21, 57).withOpacity(0.7),
+            color: const Color.fromARGB(255, 10, 38, 86).withOpacity(0.7),
             elevation: 50,
             margin: EdgeInsets.all(0),
             child: Container(
               alignment: Alignment.center,
               width: ScreenSize().checkScreenType(context) == 'web'
-                  ? w / 6
+                  ? w / 5
                   : w / 2.2,
               child: Padding(
                 padding: EdgeInsets.all(
-                    ScreenSize().checkScreenType(context) == 'web'
-                        ? 20
-                        : ScreenSize().checkScreenType(context) == 'small'
-                            ? 0.0
-                            : 8),
+                    ScreenSize().checkScreenType(context) == 'web' ? 20 : 8.0),
                 child: SizedBox(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +77,6 @@ class _DashboardCardState extends State<DashboardCard> {
                                   verticalOffset: 100,
                                   duration: Duration(milliseconds: 900),
                                   child: SizedBox(
-                                    height: h / 14,
                                     child: Text(
                                       widget.text,
                                       style: TextStyle(
@@ -96,7 +93,7 @@ class _DashboardCardState extends State<DashboardCard> {
                                   child: Text(
                                     widget.text2,
                                     style: TextStyle(
-                                      fontSize: 22.dp,
+                                      fontSize: 14.dp,
                                       color: white2,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -107,6 +104,15 @@ class _DashboardCardState extends State<DashboardCard> {
                           ),
                         ],
                       ),
+                      Divider(),
+                      Text(
+                        widget.text3,
+                        style: TextStyle(
+                          fontSize: 12.dp,
+                          color: white2,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      )
                     ],
                   ),
                 ),

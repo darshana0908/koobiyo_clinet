@@ -4,21 +4,14 @@ import 'package:client_app/const/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
-class ViewOrders extends StatelessWidget {
+import '../../../../../const/const.dart';
+
+class ReceivedCOD extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyDataTable(),
-    );
-  }
+  _ReceivedCODState createState() => _ReceivedCODState();
 }
 
-class MyDataTable extends StatefulWidget {
-  @override
-  _MyDataTableState createState() => _MyDataTableState();
-}
-
-class _MyDataTableState extends State<MyDataTable> {
+class _ReceivedCODState extends State<ReceivedCOD> {
   TextEditingController _searchController = TextEditingController();
   List<DataRow> _filteredRows = [];
   String selectedValue = "10";
@@ -43,14 +36,7 @@ class _MyDataTableState extends State<MyDataTable> {
       DataCell(Text('Smith')),
       DataCell(Text('25')),
       DataCell(Text('John')),
-      DataCell(Text('Jane')),
-      DataCell(Text('Smith')),
-      DataCell(Text('25')),
       DataCell(Text('John')),
-      DataCell(Text('Jane')),
-      DataCell(Text('Smith')),
-      DataCell(Text('25')),
-      DataCell(Text('25')),
     ]),
 
     // Add more rows as needed
@@ -94,7 +80,11 @@ class _MyDataTableState extends State<MyDataTable> {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Orders'),
+        title: Text(
+          'Paid Orders',
+          style: TextStyle(
+              fontSize: 18.dp, fontWeight: FontWeight.bold, color: black1),
+        ),
       ),
       body: Column(
         children: [
@@ -151,54 +141,52 @@ class _MyDataTableState extends State<MyDataTable> {
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Card(
-                        elevation: 20,
-                        child: DataTable(
-                          headingRowColor:
-                              MaterialStateProperty.all(AppColors.borderColor),
-                          columnSpacing: 10,
-                          border: TableBorder.all(
-                            color: Colors.black12,
-                            width: 0.5,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 20,
+                          child: SizedBox(
+                            width:
+                                ScreenSize().checkScreenType(context) == 'web'
+                                    ? w - w / 5
+                                    : null,
+                            child: DataTable(
+                              headingRowColor: MaterialStateProperty.all(
+                                  AppColors.borderColor),
+                              columnSpacing: 10,
+                              border: TableBorder.all(
+                                color: Colors.black12,
+                                width: 0.5,
+                              ),
+                              columns: [
+                                DataColumn(
+                                    numeric: true,
+                                    onSort: (columnIndex, ascending) {},
+                                    label: Text(
+                                      'Payment No',
+                                      textWidthBasis: TextWidthBasis.parent,
+                                    )),
+                                DataColumn(
+                                    label: Text(
+                                  'Payment Type',
+                                )),
+                                // DataColumn(
+                                //     tooltip: 'Orde Date', label: Text('Order\nNo')),
+                                DataColumn(label: Text('Paid By')),
+                                DataColumn(label: Text('Collected COD')),
+                                DataColumn(label: Text('Total Del. Charge')),
+                                DataColumn(
+                                    label: SizedBox(child: Text('Surecharge'))),
+                                DataColumn(label: Text('Net Paid Account')),
+                                DataColumn(label: Text('Status')),
+                                DataColumn(label: Text('Paid date')),
+                                DataColumn(label: Text('View')),
+                              ],
+                              rows: _filteredRows,
+                            ),
                           ),
-                          columns: [
-                            DataColumn(
-                                numeric: true,
-                                onSort: (columnIndex, ascending) {},
-                                tooltip: 'Orde Date',
-                                label: Text(
-                                  'Orde Date',
-                                  textWidthBasis: TextWidthBasis.parent,
-                                )),
-                            DataColumn(
-                                tooltip: 'Orde Date',
-                                label: Text(
-                                  'Waybill Id',
-                                )),
-                            DataColumn(
-                                tooltip: 'Orde Date', label: Text('Order\nNo')),
-                            DataColumn(label: Text('Name')),
-                            DataColumn(label: Text('Phone')),
-                            DataColumn(label: Text('Address')),
-                            DataColumn(
-                                label: SizedBox(child: Text('Description'))),
-                            DataColumn(
-                                label:
-                                    SizedBox(child: Text('Internal\nRemarks'))),
-                            DataColumn(
-                                label: SizedBox(
-                                    child: Text('Koombiyo \nRemarks'))),
-                            DataColumn(label: Text('COD')),
-                            DataColumn(label: Text('Del\nChrg')),
-                            DataColumn(label: Text('Branch')),
-                            DataColumn(label: Text('Status')),
-                            DataColumn(label: Text('Print')),
-                            DataColumn(label: Text('More')),
-                            DataColumn(label: Text('Delete')),
-                            DataColumn(label: Text('Bulk\nSelect'))
-                          ],
-                          rows: _filteredRows,
                         ),
                       ),
                     ],
@@ -272,14 +260,7 @@ class MyData extends DataTableSource {
       DataCell(Text(_data[index]['id'].toString())),
       DataCell(Text(_data[index]["title"])),
       DataCell(Text(_data[index]["price"].toString())),
-      DataCell(onTap: () {}, Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
       DataCell(Text(_data[index]["price"].toString())),
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-      DataCell(Text(_data[index]["price"].toString())),
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
     ]);
   }
 }

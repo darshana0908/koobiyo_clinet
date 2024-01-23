@@ -4,10 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:text_scroll/text_scroll.dart';
-
-import '../../../../widget/custom_TextField.dart';
 import '../../../../widget/diloag_button.dart';
 
 class AddOrder extends StatefulWidget {
@@ -40,7 +37,7 @@ class _AddOrderState extends State<AddOrder> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: brown,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: AnimationLimiter(
             child: AnimationConfiguration.synchronized(

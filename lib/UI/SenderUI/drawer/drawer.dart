@@ -1,19 +1,21 @@
 import 'dart:ui';
-
 import 'package:client_app/UI/SenderUI/drawer/dashbord/dashbord.dart';
 import 'package:client_app/provider/provider.dart';
-import 'package:expansion_tile_group/expansion_tile_group.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:provider/provider.dart';
-
 import '../../../const/color.dart';
 import '../../../const/const.dart';
-import '../../../main.dart';
 import '../../widget/drower/drower_button.dart';
 import 'all_order/add_order/add_oder.dart';
-import 'data.dart';
-import 'view_oders/testing.dart';
+import 'all_order/return_receive/return_receive.dart';
+import 'delvery_rate/delivery_rates.dart';
+import 'finance/Received_COD/received_cod.dart';
+import 'finance/payment_summery/payment_summary.dart';
+import 'issues/create_issues/create_issues.dart';
+import 'report/complete_order/complete_order.dart';
+import 'report/delivery_report/delivery_report.dart';
+import 'report/order_report/order_report.dart';
 import 'view_oders/view_orders.dart';
 
 class customDrawer extends StatefulWidget {
@@ -224,7 +226,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                               Provider.of<ProviderS>(context,
                                                           listen: false)
                                                       .selectedWidet =
-                                                  DataTableText();
+                                                  ReturnReceive();
 
                                               setState(() {
                                                 key = '4';
@@ -233,93 +235,175 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                           ])
                                         : titleIndex == 3
                                             ? Column(children: [
-                                                tileButton('Order Report', () {
+                                                tileButton('Payment Summary',
+                                                    () {
                                                   Provider.of<ProviderS>(
                                                               context,
                                                               listen: false)
                                                           .selectedWidet =
-                                                      Testing();
+                                                      PaymentSummery();
 
                                                   setState(() {
                                                     key = '5';
                                                   });
                                                 }, '5', key),
-                                                tileButton('Delivery Report',
-                                                    () {
+                                                tileButton('Received COD', () {
+                                                  Provider.of<ProviderS>(
+                                                              context,
+                                                              listen: false)
+                                                          .selectedWidet =
+                                                      ReceivedCOD();
                                                   setState(() {
                                                     key = '6';
                                                   });
                                                 }, '6', key),
-                                                tileButton('Complete Orders',
-                                                    () {
-                                                  setState(() {
-                                                    key = '7';
-                                                  });
-                                                }, '7', key),
                                               ])
                                             : titleIndex == 4
                                                 ? Column(children: [
-                                                    tileButton('Rare Card', () {
+                                                    tileButton('Oder Report',
+                                                        () {
+                                                      Provider.of<ProviderS>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .selectedWidet =
+                                                          OderReportScreen();
+                                                      setState(() {
+                                                        key = '7';
+                                                      });
+                                                    }, '7', key),
+                                                    tileButton(
+                                                        'Delivery Report', () {
+                                                      Provider.of<ProviderS>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .selectedWidet =
+                                                          DeliveryReport();
                                                       setState(() {
                                                         key = '8';
                                                       });
                                                     }, '8', key),
+                                                    tileButton(
+                                                        'Complete Orders', () {
+                                                      Provider.of<ProviderS>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .selectedWidet =
+                                                          CompleteOrder();
+                                                      setState(() {
+                                                        key = '9';
+                                                      });
+                                                    }, '9', key),
                                                   ])
                                                 : titleIndex == 5
                                                     ? Column(children: [
-                                                        tileButton(
-                                                            'Create Issues',
+                                                        tileButton('Rate Card',
                                                             () {
-                                                          setState(() {
-                                                            key = '9';
-                                                          });
-                                                        }, '9', key),
-                                                        tileButton('All Issues',
-                                                            () {
+                                                          Provider.of<ProviderS>(
+                                                                      context,
+                                                                      listen: false)
+                                                                  .selectedWidet =
+                                                              DeliveryRates();
+
                                                           setState(() {
                                                             key = '10';
                                                           });
                                                         }, '10', key),
-                                                        tileButton(
-                                                            'Resolved Issues',
-                                                            () {
-                                                          setState(() {
-                                                            key = '11';
-                                                          });
-                                                        }, '11', key),
                                                       ])
                                                     : titleIndex == 6
                                                         ? Column(children: [
                                                             tileButton(
-                                                                'Barcodes', () {
+                                                                'Create issues',
+                                                                () {
+                                                              Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet =
+                                                                  CreateIssues();
+                                                              setState(() {
+                                                                key = '11';
+                                                              });
+                                                            }, '11', key),
+                                                            tileButton(
+                                                                'All Issues',
+                                                                () {
+                                                              Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet =
+                                                                  CompleteOrder();
                                                               setState(() {
                                                                 key = '12';
                                                               });
                                                             }, '12', key),
                                                             tileButton(
-                                                                'Pickup Requests',
+                                                                'Resolved Issues',
                                                                 () {
+                                                              Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet =
+                                                                  CompleteOrder();
                                                               setState(() {
                                                                 key = '13';
                                                               });
                                                             }, '13', key),
                                                           ])
-                                                        : Column(children: [
-                                                            tileButton(
-                                                                'HO Contacts',
-                                                                () {
-                                                              setState(() {
-                                                                key = '14';
-                                                              });
-                                                            }, '14', key),
-                                                            tileButton(
-                                                                'Branch Contacts',
-                                                                () {
-                                                              setState(() {
-                                                                key = '15';
-                                                              });
-                                                            }, '15', key),
-                                                          ]),
+                                                        : titleIndex == 7
+                                                            ? Column(children: [
+                                                                tileButton(
+                                                                    'Barcodes',
+                                                                    () {
+                                                                  Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet = CompleteOrder();
+                                                                  setState(() {
+                                                                    key = '14';
+                                                                  });
+                                                                }, '14', key),
+                                                                tileButton(
+                                                                    'Pickup Requests',
+                                                                    () {
+                                                                  Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet = CompleteOrder();
+                                                                  setState(() {
+                                                                    key = '15';
+                                                                  });
+                                                                }, '15', key),
+                                                              ])
+                                                            : Column(children: [
+                                                                tileButton(
+                                                                    'HO Contacts',
+                                                                    () {
+                                                                  Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet = CompleteOrder();
+                                                                  setState(() {
+                                                                    key = '16';
+                                                                  });
+                                                                }, '16', key),
+                                                                tileButton(
+                                                                    'Branch Contacts',
+                                                                    () {
+                                                                  Provider.of<ProviderS>(
+                                                                          context,
+                                                                          listen:
+                                                                              false)
+                                                                      .selectedWidet = CompleteOrder();
+                                                                  setState(() {
+                                                                    key = '17';
+                                                                  });
+                                                                }, '17', key),
+                                                              ]),
                             color: buttonList[index]['id'] == 0
                                 ? white.withOpacity(0.2)
                                 : titleIndex == buttonList[index]['id']
