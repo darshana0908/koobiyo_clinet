@@ -1,3 +1,4 @@
+import 'package:client_app/UI/widget/dialog)button2.dart';
 import 'package:client_app/UI/widget/diloag_button.dart';
 import 'package:client_app/const/color.dart';
 import 'package:flutter/material.dart';
@@ -25,13 +26,15 @@ class UserCheck extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.bold),
             ),
-            DialogButton(
+            DialogButton2(
+                color2: Colors.blue,
                 text: 'I am Sender',
                 onTap: () {},
                 buttonHeight: h / 9,
                 width: w,
                 color: black),
-            DialogButton(
+            DialogButton2(
+                color2: Colors.blue,
                 text: 'I am Sender',
                 onTap: () {},
                 buttonHeight: h / 9,

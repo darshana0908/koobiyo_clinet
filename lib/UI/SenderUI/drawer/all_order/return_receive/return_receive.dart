@@ -88,7 +88,11 @@ class _MyDataTableState extends State<MyDataTable> {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Orders'),
+        title: Text(
+          'View Orders',
+          style: TextStyle(
+              fontSize: 18.dp, fontWeight: FontWeight.bold, color: black1),
+        ),
       ),
       body: Column(
         children: [
@@ -149,7 +153,7 @@ class _MyDataTableState extends State<MyDataTable> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Card(
+                        child: Card(color: backgroundColor2,
                           elevation: 20,
                           child: SizedBox(
                             width:

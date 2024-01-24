@@ -7,16 +7,20 @@ import 'package:provider/provider.dart';
 import '../../../const/color.dart';
 import '../../../const/const.dart';
 import '../../widget/drower/drower_button.dart';
+import '../request/barcode/barcode.dart';
+import '../request/pickup_request/pickup_request.dart';
 import 'all_order/add_order/add_oder.dart';
 import 'all_order/return_receive/return_receive.dart';
 import 'delvery_rate/delivery_rates.dart';
 import 'finance/Received_COD/received_cod.dart';
 import 'finance/payment_summery/payment_summary.dart';
+import 'issues/all_issues/all_issues.dart';
+import 'issues/resolved_issues/resolved_issues.dart';
 import 'issues/create_issues/create_issues.dart';
 import 'report/complete_order/complete_order.dart';
 import 'report/delivery_report/delivery_report.dart';
 import 'report/order_report/order_report.dart';
-import 'view_oders/view_orders.dart';
+import 'all_order/view_oders/view_orders.dart';
 
 class customDrawer extends StatefulWidget {
   const customDrawer({super.key});
@@ -107,7 +111,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                 boxShadow: [BoxShadow(blurRadius: 2000)],
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(300)),
-                color: brown),
+                color: stackColor1),
           ),
           Container(
             height: h / 1.8,
@@ -116,7 +120,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                 boxShadow: [BoxShadow(blurRadius: 2000)],
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(300)),
-                color: red),
+                color: stackColor2),
           ),
           Container(
             height: h,
@@ -174,6 +178,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                             onTap: () {
                               print(buttonList[index]['id']);
                               if (buttonList[index]['id'] == 1) {
+                                BackDrawer().back(context);
                                 Provider.of<ProviderS>(context, listen: false)
                                     .selectedWidet = DashBoard();
                                 setState(() {
@@ -197,6 +202,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                     : titleIndex == 2
                                         ? Column(children: [
                                             tileButton('Add Orders', () {
+                                              BackDrawer().back(context);
                                               Provider.of<ProviderS>(context,
                                                       listen: false)
                                                   .selectedWidet = AddOrder();
@@ -205,6 +211,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                               });
                                             }, '1', key),
                                             tileButton('Upload Orders', () {
+                                              BackDrawer().back(context);
                                               // Provider.of<ProviderS>(context,
                                               //             listen: false)
                                               //         .selectedWidet =
@@ -215,6 +222,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                               });
                                             }, '2', key),
                                             tileButton('View Orders', () {
+                                              BackDrawer().back(context);
                                               Provider.of<ProviderS>(context,
                                                       listen: false)
                                                   .selectedWidet = ViewOrders();
@@ -223,6 +231,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                               });
                                             }, '3', key),
                                             tileButton('Return Receive', () {
+                                              BackDrawer().back(context);
                                               Provider.of<ProviderS>(context,
                                                           listen: false)
                                                       .selectedWidet =
@@ -237,6 +246,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                             ? Column(children: [
                                                 tileButton('Payment Summary',
                                                     () {
+                                                  BackDrawer().back(context);
                                                   Provider.of<ProviderS>(
                                                               context,
                                                               listen: false)
@@ -248,6 +258,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                   });
                                                 }, '5', key),
                                                 tileButton('Received COD', () {
+                                                  BackDrawer().back(context);
                                                   Provider.of<ProviderS>(
                                                               context,
                                                               listen: false)
@@ -262,6 +273,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                 ? Column(children: [
                                                     tileButton('Oder Report',
                                                         () {
+                                                      BackDrawer()
+                                                          .back(context);
                                                       Provider.of<ProviderS>(
                                                                   context,
                                                                   listen: false)
@@ -273,6 +286,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                     }, '7', key),
                                                     tileButton(
                                                         'Delivery Report', () {
+                                                      BackDrawer()
+                                                          .back(context);
                                                       Provider.of<ProviderS>(
                                                                   context,
                                                                   listen: false)
@@ -284,6 +299,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                     }, '8', key),
                                                     tileButton(
                                                         'Complete Orders', () {
+                                                      BackDrawer()
+                                                          .back(context);
                                                       Provider.of<ProviderS>(
                                                                   context,
                                                                   listen: false)
@@ -298,6 +315,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                     ? Column(children: [
                                                         tileButton('Rate Card',
                                                             () {
+                                                          BackDrawer()
+                                                              .back(context);
                                                           Provider.of<ProviderS>(
                                                                       context,
                                                                       listen: false)
@@ -314,6 +333,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                             tileButton(
                                                                 'Create issues',
                                                                 () {
+                                                              BackDrawer().back(
+                                                                  context);
                                                               Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
@@ -327,12 +348,14 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                             tileButton(
                                                                 'All Issues',
                                                                 () {
+                                                              BackDrawer().back(
+                                                                  context);
                                                               Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
                                                                               false)
                                                                       .selectedWidet =
-                                                                  CompleteOrder();
+                                                                  AllIssues();
                                                               setState(() {
                                                                 key = '12';
                                                               });
@@ -340,12 +363,14 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                             tileButton(
                                                                 'Resolved Issues',
                                                                 () {
+                                                              BackDrawer().back(
+                                                                  context);
                                                               Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
                                                                               false)
                                                                       .selectedWidet =
-                                                                  CompleteOrder();
+                                                                  ResolvedIssues();
                                                               setState(() {
                                                                 key = '13';
                                                               });
@@ -356,11 +381,14 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                                 tileButton(
                                                                     'Barcodes',
                                                                     () {
+                                                                  BackDrawer()
+                                                                      .back(
+                                                                          context);
                                                                   Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
                                                                               false)
-                                                                      .selectedWidet = CompleteOrder();
+                                                                      .selectedWidet = Barcode();
                                                                   setState(() {
                                                                     key = '14';
                                                                   });
@@ -368,11 +396,14 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                                 tileButton(
                                                                     'Pickup Requests',
                                                                     () {
+                                                                  BackDrawer()
+                                                                      .back(
+                                                                          context);
                                                                   Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
                                                                               false)
-                                                                      .selectedWidet = CompleteOrder();
+                                                                      .selectedWidet = PickupRequest();
                                                                   setState(() {
                                                                     key = '15';
                                                                   });
@@ -382,6 +413,9 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                                 tileButton(
                                                                     'HO Contacts',
                                                                     () {
+                                                                  BackDrawer()
+                                                                      .back(
+                                                                          context);
                                                                   Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
@@ -394,6 +428,9 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                                                 tileButton(
                                                                     'Branch Contacts',
                                                                     () {
+                                                                  BackDrawer()
+                                                                      .back(
+                                                                          context);
                                                                   Provider.of<ProviderS>(
                                                                           context,
                                                                           listen:
@@ -463,5 +500,13 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
         ),
       ),
     );
+  }
+}
+
+class BackDrawer {
+  back(BuildContext context) {
+    ScreenSize().checkScreenType(context) != 'web'
+        ? Navigator.pop(context, true)
+        : null;
   }
 }

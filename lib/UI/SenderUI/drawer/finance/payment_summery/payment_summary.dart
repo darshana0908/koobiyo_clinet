@@ -79,7 +79,8 @@ class _PaymentSummeryState extends State<PaymentSummery> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(   automaticallyImplyLeading: false,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Payment Summary',
           style: TextStyle(
@@ -160,6 +161,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
               height: 12,
             ),
             Card(
+              color: backgroundColor2,
               elevation: 20,
               child: Column(
                 children: [
@@ -218,7 +220,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                             onTap: () {},
-                            child: Card(
+                            child: Card( 
                                 elevation: 20,
                                 margin: EdgeInsets.all(0),
                                 color: lightblue.withOpacity(0.2),
@@ -306,7 +308,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Card(
+                                child: Card(color: backgroundColor2,
                                   elevation: 20,
                                   child: SizedBox(
                                     width:

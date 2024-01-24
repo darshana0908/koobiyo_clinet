@@ -1,9 +1,11 @@
+import 'package:client_app/UI/login_and_otp/login.dart';
 import 'package:client_app/UI/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'const/const.dart';
 import 'provider/provider.dart';
 
 void main() {
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Splash(),
+        home:
+            // ScreenSize().checkScreenType(context) != 'web' ? Login() :
+            Splash(),
       );
     });
   }

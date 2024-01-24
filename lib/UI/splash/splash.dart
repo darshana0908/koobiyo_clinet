@@ -1,4 +1,5 @@
 import 'package:client_app/UI/login_and_otp/login.dart';
+import 'package:client_app/const/const.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -11,7 +12,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) => Navigator.push(
+    Future.delayed(Duration(milliseconds: 3000)).then((value) => Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => Login(),

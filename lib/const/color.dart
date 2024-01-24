@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color backgroundColor = Color(0xffffffff);
+Color backgroundColor2 = Color.fromARGB(255, 228, 248, 255);
 Color blue = Color.fromARGB(255, 170, 201, 255);
 Color black = Colors.black;
 Color white = Colors.white;
@@ -35,6 +36,11 @@ Color appliteBlue = Color.fromARGB(255, 6, 101, 148);
 Color red = Color(0xffd7488f);
 Color brown = Color(0xffdcd3d3);
 Color darkBlue = Color.fromARGB(255, 0, 21, 57).withOpacity(0.7);
+Color appButtonColor = Color.fromARGB(255, 36, 145, 192);
+Color stackColor1 = Color.fromARGB(255, 37, 159, 207);
+Color stackColor2 = Color.fromARGB(255, 78, 175, 255);
+Color appBarColor = Color.fromARGB(255, 4, 39, 79);
+Color appButtonColorLite = Color.fromARGB(255, 13, 154, 255);
 
 class AppColors {
   static const Color primary = contentColorCyan;

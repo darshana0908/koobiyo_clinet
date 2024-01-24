@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:client_app/const/color.dart';
 import 'package:client_app/const/const.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -45,36 +47,36 @@ class _AddOrderState extends State<AddOrder> {
             width: w,
             height: h,
             child: Stack(children: [
-              SlideAnimation(
-                verticalOffset: -300.0,
-                duration: Duration(milliseconds: 1200),
-                child: Container(
-                  height: h / 1.2,
-                  width: w,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(300)),
-                      color: const Color.fromARGB(255, 76, 145, 201)),
-                ),
-              ),
-              SlideAnimation(
-                duration: Duration(milliseconds: 1000),
-                verticalOffset: -100.0,
-                child: Container(
-                  height: h / 1.8,
-                  width: w,
-                  decoration: BoxDecoration(
-                      boxShadow: [BoxShadow(blurRadius: 2000)],
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(300)),
-                      color: Colors.blue),
-                ),
-              ),
-              Container(
-                height: h,
-                width: w,
-                color: black.withOpacity(0.5),
-              ),
+              // SlideAnimation(
+              //   verticalOffset: -300.0,
+              //   duration: Duration(milliseconds: 1200),
+              //   child: Container(
+              //     height: h,
+              //     width: w,
+              //     decoration: BoxDecoration(
+              //         borderRadius:
+              //             BorderRadius.only(bottomRight: Radius.circular(300)),
+              //         color: const Color.fromARGB(255, 76, 145, 201)),
+              //   ),
+              // ),
+              // SlideAnimation(
+              //   duration: Duration(milliseconds: 1000),
+              //   verticalOffset: -100.0,
+              //   child: Container(
+              //     height: h / 1.8,
+              //     width: w,
+              //     decoration: BoxDecoration(
+              //         boxShadow: [BoxShadow(blurRadius: 2000)],
+              //         borderRadius:
+              //             BorderRadius.only(bottomRight: Radius.circular(300)),
+              //         color: Colors.blue),
+              //   ),
+              // ),
+              // Container(
+              //   height: h,
+              //   width: w,
+              //   color: black.withOpacity(0.5),
+              // ),
               SingleChildScrollView(
                 child: Column(
                   children: [
@@ -86,40 +88,44 @@ class _AddOrderState extends State<AddOrder> {
                     Container(
                       color: white.withOpacity(0.2),
                       child: TextScroll(
+                          delayBefore: Duration(seconds: 2),
                           "For Barcode Issues - Contact 011 7 886 786 Ex 1. බාර් කෝඩ් (තීරු කේත) ගැටලු සදහා 011 7 886 786 අමතා අංක 1 අමතන්න",
                           mode: TextScrollMode.endless,
-                          style: TextStyle(color: white2, fontSize: 18)),
+                          pauseBetween: Duration(seconds: 2),
+                          intervalSpaces: 200,
+                          style: TextStyle(color: black2, fontSize: 18)),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    ScreenSize().checkScreenType(context) == 'web'
-                        ? SizedBox(
-                            width: w - w / 10,
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  addOder(),
-                                  Spacer(),
-                                  uploadOder(),
-                                ],
-                              ),
-                            ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              children: [
-                                uploadOder(),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                addOder(),
-                              ],
-                            ),
-                          )
+                    // ScreenSize().checkScreenType(context) == 'web'
+                    //     ? SizedBox(
+                    //         width: w - w / 10,
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.all(12.0),
+                    //           child: Row(
+                    //             crossAxisAlignment: CrossAxisAlignment.start,
+                    //             children: [
+                    //               addOder(),
+                    //               Spacer(),
+                    //               uploadOder(),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       )
+                    //     :
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        children: [
+                          uploadOder(),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          addOder(),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               )
@@ -134,98 +140,95 @@ class _AddOrderState extends State<AddOrder> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: ScreenSize().checkScreenType(context) == 'web' ? w / 4 : w,
       child: Card(
+        elevation: 20,
         color: white,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Text(
-                'Upload New Orders',
-                style: TextStyle(
-                    color: black, fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 13,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Download Template',
-                            style: TextStyle(
-                                color: black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(Icons.file_download_outlined),
-                        ],
-                      ),
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: DottedBorder(
-                  color: Colors.black38,
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(12),
-                  padding: EdgeInsets.all(6),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: h / 7,
-                      width: w / 2,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.cloud_upload_outlined,
-                            size: 40,
-                            color: Color.fromARGB(95, 149, 146, 146),
-                          ),
-                          Text('Please upload \nyour File',
-                              textAlign: TextAlign.center,
+          padding: const EdgeInsets.all(12.0),
+          child: SizedBox(
+            width: ScreenSize().checkScreenType(context) == 'web' ? w / 2 : w,
+            child: Column(
+              children: [
+                Text(
+                  'Upload New Orders',
+                  style: TextStyle(
+                      color: black, fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 13,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: ScreenSize().checkScreenType(context) == 'web'
+                            ? w / 2
+                            : w / 1.5,
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(border: Border.all()),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Download Template',
                               style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black38,
-                                fontSize: 12.dp,
-                              )),
-                        ],
+                                  color: black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.file_download_outlined),
+                          ],
+                        ),
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: DottedBorder(
+                    color: Colors.black38,
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(12),
+                    padding: EdgeInsets.all(6),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      child: Container(
+                        alignment: Alignment.center,
+                        // height: h / 7,
+                        width: w / 2,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.cloud_upload_outlined,
+                              size: 40,
+                              color: Color.fromARGB(95, 149, 146, 146),
+                            ),
+                            Text('Please upload \nyour File',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black38,
+                                  fontSize: 12.dp,
+                                )),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              DialogButton(
-                  text: "Upload",
-                  onTap: () {},
-                  buttonHeight: h / 12,
-                  width: ScreenSize().checkScreenType(context) == 'web'
-                      ? w / 5
-                      : w,
-                  color: black),
-              SizedBox(
-                height: h / 10,
-                width: w,
-                child: Icon(
-                  Icons.file_copy,
-                  size: 40,
-                  color: black3,
-                ),
-              )
-            ],
+                DialogButton(
+                    text: "Upload",
+                    onTap: () {},
+                    buttonHeight: h / 12,
+                    width: ScreenSize().checkScreenType(context) == 'web'
+                        ? w / 5
+                        : w / 1.5,
+                    color: appButtonColorLite),
+              ],
+            ),
           ),
         ),
       ),
@@ -236,7 +239,8 @@ class _AddOrderState extends State<AddOrder> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Card(
-      color: white.withOpacity(0.2),
+      elevation: 20,
+      color: backgroundColor2,
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: SizedBox(
@@ -247,7 +251,7 @@ class _AddOrderState extends State<AddOrder> {
               Text(
                 'Add new Orders',
                 style: TextStyle(
-                    color: white, fontSize: 18, fontWeight: FontWeight.bold),
+                    color: black, fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 13,
@@ -263,14 +267,14 @@ class _AddOrderState extends State<AddOrder> {
                         },
                         child: Text(
                           'Help ?',
-                          style: TextStyle(color: white2),
+                          style: TextStyle(color: black2),
                         )),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(
                           Icons.print,
                           size: 30,
-                          color: white2,
+                          color: black2,
                         )),
                   ],
                 ),
@@ -279,13 +283,13 @@ class _AddOrderState extends State<AddOrder> {
                 children: [
                   Flexible(
                     child: TextField(
-                      style: TextStyle(color: white),
+                      style: TextStyle(color: black),
                       decoration: InputDecoration(
                           hintText: 'Waybill Id',
-                          hintStyle: TextStyle(color: white2),
+                          hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.person,
-                            color: white2,
+                            color: black2,
                           )),
                     ),
                   ),
@@ -294,13 +298,13 @@ class _AddOrderState extends State<AddOrder> {
                   ),
                   Flexible(
                     child: TextField(
-                      style: TextStyle(color: white),
+                      style: TextStyle(color: black),
                       decoration: InputDecoration(
                           hintText: 'Oder No',
-                          hintStyle: TextStyle(color: white2),
+                          hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.person,
-                            color: white2,
+                            color: black2,
                           )),
                     ),
                   ),
@@ -310,26 +314,26 @@ class _AddOrderState extends State<AddOrder> {
                 height: 13,
               ),
               TextField(
-                style: TextStyle(color: white),
+                style: TextStyle(color: black),
                 decoration: InputDecoration(
                     hintText: 'Customer Name',
-                    hintStyle: TextStyle(color: white2),
+                    hintStyle: TextStyle(color: black2),
                     prefixIcon: Icon(
                       Icons.person,
-                      color: white2,
+                      color: black2,
                     )),
               ),
               SizedBox(
                 height: 13,
               ),
               TextField(
-                style: TextStyle(color: white),
+                style: TextStyle(color: black),
                 decoration: InputDecoration(
                     hintText: 'Customer Address',
-                    hintStyle: TextStyle(color: white2),
+                    hintStyle: TextStyle(color: black2),
                     prefixIcon: Icon(
                       Icons.person,
-                      color: white2,
+                      color: black2,
                     )),
               ),
               SizedBox(
@@ -339,13 +343,13 @@ class _AddOrderState extends State<AddOrder> {
                 children: [
                   Flexible(
                     child: TextField(
-                      style: TextStyle(color: white),
+                      style: TextStyle(color: black2),
                       decoration: InputDecoration(
                           hintText: 'Phone number',
-                          hintStyle: TextStyle(color: white2),
+                          hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.person,
-                            color: white2,
+                            color: black2,
                           )),
                     ),
                   ),
@@ -354,13 +358,13 @@ class _AddOrderState extends State<AddOrder> {
                   ),
                   Flexible(
                     child: TextField(
-                      style: TextStyle(color: white),
+                      style: TextStyle(color: black2),
                       decoration: InputDecoration(
                           hintText: 'Oder Description',
-                          hintStyle: TextStyle(color: white2),
+                          hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.person,
-                            color: white2,
+                            color: black2,
                           )),
                     ),
                   ),
@@ -393,13 +397,13 @@ class _AddOrderState extends State<AddOrder> {
                 children: [
                   Flexible(
                     child: TextField(
-                      style: TextStyle(color: white),
+                      style: TextStyle(color: black2),
                       decoration: InputDecoration(
                           hintText: 'Product Value',
-                          hintStyle: TextStyle(color: white2),
+                          hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.person,
-                            color: white2,
+                            color: black2,
                           )),
                     ),
                   ),
@@ -408,13 +412,13 @@ class _AddOrderState extends State<AddOrder> {
                   ),
                   Flexible(
                     child: TextField(
-                      style: TextStyle(color: white),
+                      style: TextStyle(color: black2),
                       decoration: InputDecoration(
                           hintText: 'COD',
-                          hintStyle: TextStyle(color: white2),
+                          hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.person,
-                            color: white2,
+                            color: black2,
                           )),
                     ),
                   ),
@@ -424,13 +428,13 @@ class _AddOrderState extends State<AddOrder> {
                 height: 13,
               ),
               TextField(
-                style: TextStyle(color: white),
+                style: TextStyle(color: black2),
                 decoration: InputDecoration(
                     hintText: 'Note',
-                    hintStyle: TextStyle(color: white2),
+                    hintStyle: TextStyle(color: black2),
                     prefixIcon: Icon(
                       Icons.person,
-                      color: white2,
+                      color: black2,
                     )),
               ),
               SizedBox(
@@ -440,8 +444,8 @@ class _AddOrderState extends State<AddOrder> {
                   text: "Save ",
                   onTap: () {},
                   buttonHeight: h / 12,
-                  width: w,
-                  color: black),
+                  width: w / 2.5,
+                  color: appButtonColorLite),
             ],
           ),
         ),
@@ -538,13 +542,13 @@ class _AddOrderState extends State<AddOrder> {
               padding: EdgeInsets.all(isMobile ? 12.0 : 8),
               child: Icon(
                 icon,
-                color: white2,
+                color: black1,
               ),
             ),
             Flexible(
               child: Text(
                 text,
-                style: TextStyle(color: white3),
+                style: TextStyle(color: black1),
               ),
             ),
           ],
@@ -573,7 +577,7 @@ class _AddOrderState extends State<AddOrder> {
                               : 0.0),
                       child: Icon(
                         icon,
-                        color: white2,
+                        color: black1,
                       ),
                     ),
                     Flexible(
@@ -584,7 +588,7 @@ class _AddOrderState extends State<AddOrder> {
                                 : 8),
                         child: Text(
                           itemone,
-                          style: TextStyle(color: white2),
+                          style: TextStyle(color: black1),
                         ),
                       ),
                     ),

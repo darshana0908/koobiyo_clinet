@@ -79,7 +79,7 @@ class _SignUpState extends State<SignUp> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(300)),
-                        color: brown),
+                        color: stackColor1),
                   ),
                 ),
                 SlideAnimation(
@@ -92,7 +92,7 @@ class _SignUpState extends State<SignUp> {
                         boxShadow: [BoxShadow(blurRadius: 2000)],
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(300)),
-                        color: red),
+                        color: stackColor2),
                   ),
                 ),
                 Container(
@@ -134,14 +134,14 @@ class _SignUpState extends State<SignUp> {
                                             ? null
                                             : TextAlign.center,
                                     style: TextStyle(
-                                        color: white,
+                                        color: white1,
                                         fontSize: 35.dp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     'We are happy to see you here',
                                     style: TextStyle(
-                                        color: white,
+                                        color: white2,
                                         fontSize: 14,
                                         fontWeight: FontWeight.normal),
                                   ),
@@ -364,7 +364,7 @@ class _SignUpState extends State<SignUp> {
                                               'mobile'
                                           ? w
                                           : w / 2.5,
-                                      color: black),
+                                      color: appButtonColor),
                                   SizedBox(
                                     width: w,
                                     child: Column(

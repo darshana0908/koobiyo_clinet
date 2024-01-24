@@ -3,10 +3,8 @@ import 'package:client_app/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:provider/provider.dart';
-
 import '../../const/color.dart';
 import '../../const/const.dart';
-import 'drawer/dashbord/dashbord.dart';
 
 class SenderHome extends StatelessWidget {
   SenderHome({super.key});
@@ -35,7 +33,7 @@ class SenderHome extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30))),
-                backgroundColor: Color.fromARGB(255, 52, 2, 67),
+                backgroundColor: appBarColor,
                 actions: appBarButtonn(context),
                 bottom: PreferredSize(
                     preferredSize: Size(w, h / 15),
@@ -73,7 +71,7 @@ class SenderHome extends StatelessWidget {
                             ),
                             Container(
                               height: 50,
-                              color: Color.fromARGB(255, 52, 2, 67),
+                              color: appBarColor,
                               width: w - w / 5,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,

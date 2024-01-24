@@ -80,6 +80,7 @@ class _ReceivedCODState extends State<ReceivedCOD> {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Paid Orders',
           style: TextStyle(
@@ -146,6 +147,7 @@ class _ReceivedCODState extends State<ReceivedCOD> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          color: backgroundColor2,
                           elevation: 20,
                           child: SizedBox(
                             width:

@@ -71,7 +71,7 @@ class _DialogButton2State extends State<DialogButton2> {
           ),
           child: Text(widget.text,
               style: TextStyle(
-                  color: white, fontSize: 17, fontWeight: FontWeight.bold)),
+                  color: white, fontSize: 17, fontWeight: FontWeight.normal)),
         ),
       ),
     );

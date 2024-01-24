@@ -210,6 +210,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
                 height: 12,
               ),
               Card(
+                color: backgroundColor2,
                 elevation: 20,
                 child: Column(
                   children: [
@@ -341,7 +342,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
                                     selectDate(context, true);
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Select Start Date',
+                                      hintText: 'Start Date',
                                       prefixIcon: Icon(Icons.date_range)),
                                 ),
                               ),
@@ -354,7 +355,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
                                     selectDate(context, false);
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Select End Date',
+                                      hintText: 'End Date',
                                       prefixIcon: Icon(Icons.date_range)),
                                 ),
                               ),
@@ -423,6 +424,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
+                                    color: backgroundColor2,
                                     elevation: 20,
                                     child: SizedBox(
                                       width: ScreenSize()

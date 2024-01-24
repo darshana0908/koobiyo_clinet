@@ -1,12 +1,9 @@
 import 'dart:ui';
-
 import 'package:client_app/UI/SenderUI/sender_home.dart';
 import 'package:client_app/UI/login_and_otp/sign_up.dart';
-import 'package:client_app/UI/userCheck/user_check.dart';
 import 'package:client_app/UI/widget/diloag_button.dart';
 import 'package:client_app/const/color.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -50,7 +47,7 @@ class _LoginState extends State<Login> {
                 decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(300)),
-                    color: brown),
+                    color: Color.fromARGB(255, 37, 159, 207)),
               ),
             ),
             SlideAnimation(
@@ -63,7 +60,7 @@ class _LoginState extends State<Login> {
                     boxShadow: [BoxShadow(blurRadius: 2000)],
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(300)),
-                    color: red),
+                    color: const Color.fromARGB(255, 78, 175, 255)),
               ),
             ),
             Container(
@@ -135,11 +132,11 @@ class _LoginState extends State<Login> {
                               width: ScreenSize().checkScreenType(context) ==
                                       'mobile'
                                   ? w
-                                  : w / 2.5,
+                                  : w / 3,
                               child: TextField(
                                 style: TextStyle(color: white),
                                 decoration: InputDecoration(
-                                    hintText: 'user name',
+                                    hintText: 'User name',
                                     hintStyle: TextStyle(color: white2),
                                     prefixIcon: Icon(
                                       Icons.person,
@@ -154,12 +151,12 @@ class _LoginState extends State<Login> {
                               width: ScreenSize().checkScreenType(context) ==
                                       'mobile'
                                   ? w
-                                  : w / 2.5,
+                                  : w / 3,
                               child: TextField(
                                 style: TextStyle(color: white),
                                 obscureText: isHidePassword,
                                 decoration: InputDecoration(
-                                    hintText: 'password',
+                                    hintText: 'Password',
                                     hintStyle: TextStyle(color: white2),
                                     suffixIcon: IconButton(
                                         onPressed: () {
@@ -186,7 +183,7 @@ class _LoginState extends State<Login> {
                               width: ScreenSize().checkScreenType(context) ==
                                       'mobile'
                                   ? w
-                                  : w / 2.5,
+                                  : w / 3,
                               alignment: Alignment.centerRight,
                               child: InkWell(
                                 onTap: () {},
@@ -209,8 +206,8 @@ class _LoginState extends State<Login> {
                                 width: ScreenSize().checkScreenType(context) ==
                                         'mobile'
                                     ? w
-                                    : w / 2.5,
-                                color: black),
+                                    : w / 3,
+                                color: Color.fromARGB(255, 36, 145, 192)),
                             SizedBox(
                               width: w,
                               child: Column(
@@ -283,7 +280,7 @@ class _LoginState extends State<Login> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         scrollable: true,
         content: SizedBox(
-          width: ScreenSize().checkScreenType(context) == 'mobile' ? w : w / 3,
+          width: ScreenSize().checkScreenType(context) == 'mobile' ? w : w / 4,
           child: Stack(
             children: [
               Column(
@@ -310,7 +307,7 @@ class _LoginState extends State<Login> {
                     height: 8,
                   ),
                   DialogButton2(
-                      color2: Colors.blueGrey,
+                      color2: appButtonColor,
                       text: 'Sender',
                       onTap: () {
                         Navigator.push(
@@ -323,7 +320,7 @@ class _LoginState extends State<Login> {
                       width: ScreenSize().checkScreenType(context) == 'mobile'
                           ? w
                           : w / 2.5,
-                      color: Color.fromARGB(255, 2, 25, 64)),
+                      color: appButtonColor),
                   SizedBox(
                     width: w / 2.5,
                     child: Row(
@@ -337,7 +334,7 @@ class _LoginState extends State<Login> {
                                 decorationColor: white,
                                 decoration: TextDecoration.underline,
                                 color: black2,
-                                fontSize: 18.dp,
+                                fontSize: 14.dp,
                                 fontWeight: FontWeight.normal),
                           ),
                         ),
@@ -352,8 +349,8 @@ class _LoginState extends State<Login> {
                     width: ScreenSize().checkScreenType(context) == 'mobile'
                         ? w
                         : w / 2.5,
-                    color: black,
-                    color2: Colors.blueGrey,
+                    color: appButtonColor,
+                    color2: appButtonColor,
                   )
                 ],
               ),

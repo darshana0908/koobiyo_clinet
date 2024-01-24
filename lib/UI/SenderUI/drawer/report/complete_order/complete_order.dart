@@ -174,6 +174,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                 height: 12,
               ),
               Card(
+                color: backgroundColor2,
                 elevation: 20,
                 child: Column(
                   children: [
@@ -305,7 +306,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                     selectDate(context, true);
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Select Start Date',
+                                      hintText: 'Start Date',
                                       prefixIcon: Icon(Icons.date_range)),
                                 ),
                               ),
@@ -318,7 +319,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                     selectDate(context, false);
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Select End Date',
+                                      hintText: 'End Date',
                                       prefixIcon: Icon(Icons.date_range)),
                                 ),
                               ),
@@ -387,6 +388,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
+                                    color: backgroundColor2,
                                     elevation: 20,
                                     child: SizedBox(
                                       width: ScreenSize()

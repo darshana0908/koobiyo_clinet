@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 
 import '../../const/color.dart';
 
@@ -68,7 +69,9 @@ class _DialogButtonState extends State<DialogButton> {
           ),
           child: Text(widget.text,
               style: TextStyle(
-                  color: white, fontSize: 17, fontWeight: FontWeight.bold)),
+                  color: white,
+                  fontSize: 14.dp,
+                  fontWeight: FontWeight.normal)),
         ),
       ),
     );

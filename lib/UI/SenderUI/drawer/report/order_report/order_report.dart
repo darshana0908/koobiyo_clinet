@@ -207,6 +207,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
                 height: 12,
               ),
               Card(
+                color: backgroundColor2,
                 elevation: 20,
                 child: Column(
                   children: [
@@ -420,6 +421,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
+                                    color: backgroundColor2,
                                     elevation: 20,
                                     child: SizedBox(
                                       width: ScreenSize()

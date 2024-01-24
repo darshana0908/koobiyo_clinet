@@ -151,12 +151,13 @@ class _MyDataTableState extends State<MyDataTable> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(
+                            color: backgroundColor2,
                             elevation: 20,
                             child: SizedBox(
                               width:
                                   ScreenSize().checkScreenType(context) == 'web'
                                       ? w - w / 5
-                                      : w,
+                                      : null,
                               child: DataTable(
                                 columnSpacing: 10,
                                 headingRowHeight: 100,
