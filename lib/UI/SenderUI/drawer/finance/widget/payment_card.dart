@@ -77,6 +77,7 @@ class _PaymentCardState extends State<PaymentCard> {
                                   verticalOffset: 100,
                                   duration: Duration(milliseconds: 900),
                                   child: SizedBox(
+                                    height: h / 16,
                                     child: Text(
                                       widget.text,
                                       style: TextStyle(
@@ -105,12 +106,15 @@ class _PaymentCardState extends State<PaymentCard> {
                         ],
                       ),
                       Divider(),
-                      Text(
-                        widget.text3,
-                        style: TextStyle(
-                          fontSize: 12.dp,
-                          color: white2,
-                          fontWeight: FontWeight.normal,
+                      SizedBox(
+                        height: h / 18,
+                        child: Text(
+                          widget.text3,
+                          style: TextStyle(
+                            fontSize: 12.dp,
+                            color: white2,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                       )
                     ],

@@ -89,6 +89,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -102,7 +103,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                 PaymentCard(
                   color: Color.fromARGB(255, 55, 8, 81),
                   icon: Icons.memory_rounded,
-                  text: 'Ttal Collected COD',
+                  text: 'Total Collected COD',
                   text2: 'Rs . 00.00',
                   text3: 'Total Collected Cash on Delivery',
                 ),
@@ -117,15 +118,6 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                     : SizedBox()
               ],
             ),
-            ScreenSize().checkScreenType(context) != 'web'
-                ? PaymentCard(
-                    color: Color.fromARGB(255, 131, 127, 6),
-                    icon: Icons.payment,
-                    text: 'Payment',
-                    text2: 'Rs . 00.00',
-                    text3: 'Payment for Koombiyo',
-                  )
-                : SizedBox(),
             Row(
               children: [
                 PaymentCard(
@@ -144,6 +136,15 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                 ),
               ],
             ),
+            ScreenSize().checkScreenType(context) != 'web'
+                ? PaymentCard(
+                    color: Color.fromARGB(255, 131, 127, 6),
+                    icon: Icons.payment,
+                    text: 'Payment',
+                    text2: 'Rs . 00.00',
+                    text3: 'Payment for Koombiyo',
+                  )
+                : SizedBox(),
             SizedBox(
               height: 12,
             ),
@@ -220,7 +221,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                             onTap: () {},
-                            child: Card( 
+                            child: Card(
                                 elevation: 20,
                                 margin: EdgeInsets.all(0),
                                 color: lightblue.withOpacity(0.2),
@@ -308,7 +309,11 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Card(color: backgroundColor2,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  color: backgroundColor2,
                                   elevation: 20,
                                   child: SizedBox(
                                     width:
@@ -326,6 +331,7 @@ class _PaymentSummeryState extends State<PaymentSummery> {
                                           ? 10
                                           : null,
                                       border: TableBorder.all(
+                                        borderRadius: BorderRadius.circular(12),
                                         color: Colors.black12,
                                         width: 0.5,
                                       ),

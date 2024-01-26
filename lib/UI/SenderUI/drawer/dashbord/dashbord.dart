@@ -3,6 +3,7 @@ import 'package:client_app/const/color.dart';
 import 'package:client_app/const/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import '../../../../class/dialog.dart';
 import '../../../widget/dashbord/char.dart';
 import '../../../widget/dashbord/dashbord_card.dart';
 
@@ -14,6 +15,14 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => CustomDialog().poster(context));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

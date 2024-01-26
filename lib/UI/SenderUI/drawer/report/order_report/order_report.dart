@@ -56,9 +56,9 @@ class _OderReportScreenState extends State<OderReportScreen> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         if (isStart) {
-          startDate.text = DateFormat.yMMMEd().format(picked).toString();
+          startDate.text = DateFormat('dd/MM/yyyy').format(picked).toString();
         } else {
-          endDate.text = DateFormat.yMMMEd().format(picked).toString();
+          endDate.text = DateFormat('dd/MM/yyyy').format(picked).toString();
         }
       });
     }
@@ -111,7 +111,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Row(
@@ -294,7 +294,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
                                           selectDate(context, true);
                                         },
                                         decoration: InputDecoration(
-                                            hintText: 'Select Start Date',
+                                            hintText: 'Start Date',
                                             prefixIcon: Icon(Icons.date_range)),
                                       ),
                                     ),
@@ -309,7 +309,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
                                           selectDate(context, false);
                                         },
                                         decoration: InputDecoration(
-                                            hintText: 'Select End Date',
+                                            hintText: 'End Date',
                                             prefixIcon: Icon(Icons.date_range)),
                                       ),
                                     ),
@@ -339,7 +339,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
                                     selectDate(context, true);
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Select Start Date',
+                                      hintText: 'Start Date',
                                       prefixIcon: Icon(Icons.date_range)),
                                 ),
                               ),
@@ -352,7 +352,7 @@ class _OderReportScreenState extends State<OderReportScreen> {
                                     selectDate(context, false);
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Select End Date',
+                                      hintText: 'End Date',
                                       prefixIcon: Icon(Icons.date_range)),
                                 ),
                               ),
@@ -439,6 +439,8 @@ class _OderReportScreenState extends State<OderReportScreen> {
                                             ? 10
                                             : null,
                                         border: TableBorder.all(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           color: Colors.black12,
                                           width: 0.5,
                                         ),

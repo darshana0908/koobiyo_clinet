@@ -86,7 +86,7 @@ class _AddOrderState extends State<AddOrder> {
                           : 135,
                     ),
                     Container(
-                      color: white.withOpacity(0.2),
+                      color: appBlue.withOpacity(0.2),
                       child: TextScroll(
                           delayBefore: Duration(seconds: 2),
                           "For Barcode Issues - Contact 011 7 886 786 Ex 1. බාර් කෝඩ් (තීරු කේත) ගැටලු සදහා 011 7 886 786 අමතා අංක 1 අමතන්න",
@@ -141,12 +141,14 @@ class _AddOrderState extends State<AddOrder> {
     var w = MediaQuery.of(context).size.width;
     return SizedBox(
       child: Card(
+        surfaceTintColor: appBlue,
         elevation: 20,
         color: white,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(
+              ScreenSize().checkScreenType(context) == 'web' ? 50.0 : 8),
           child: SizedBox(
-            width: ScreenSize().checkScreenType(context) == 'web' ? w / 2 : w,
+            width: ScreenSize().checkScreenType(context) == 'web' ? w : w,
             child: Column(
               children: [
                 Text(
@@ -157,31 +159,57 @@ class _AddOrderState extends State<AddOrder> {
                 SizedBox(
                   height: 13,
                 ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            oderUploadHelp();
+                          },
+                          child: Text(
+                            'Help ?',
+                            style: TextStyle(color: black2),
+                          )),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.print,
+                            size: 30,
+                            color: black3,
+                          )),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: InkWell(
                       onTap: () {},
-                      child: Container(
-                        width: ScreenSize().checkScreenType(context) == 'web'
-                            ? w / 2
-                            : w / 1.5,
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(border: Border.all()),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Download Template',
-                              style: TextStyle(
-                                  color: black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(Icons.file_download_outlined),
-                          ],
+                      child: Card(
+                        elevation: 20,
+                        color: Color.fromARGB(255, 46, 229, 126),
+                        child: Container(
+                          width: ScreenSize().checkScreenType(context) == 'web'
+                              ? w / 5
+                              : w / 1.5,
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Download Template',
+                                style: TextStyle(
+                                    color: black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.file_download_outlined),
+                            ],
+                          ),
                         ),
                       )),
                 ),
@@ -196,8 +224,10 @@ class _AddOrderState extends State<AddOrder> {
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                       child: Container(
                         alignment: Alignment.center,
-                        // height: h / 7,
-                        width: w / 2,
+                        height: h / 7,
+                        width: ScreenSize().checkScreenType(context) == 'web'
+                            ? w / 5
+                            : w / 2,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -240,11 +270,13 @@ class _AddOrderState extends State<AddOrder> {
     var w = MediaQuery.of(context).size.width;
     return Card(
       elevation: 20,
+      surfaceTintColor: appBlue,
       color: backgroundColor2,
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(
+            ScreenSize().checkScreenType(context) == 'web' ? 50.0 : 8),
         child: SizedBox(
-          width: ScreenSize().checkScreenType(context) == 'web' ? w / 2 : w,
+          width: ScreenSize().checkScreenType(context) == 'web' ? w : w,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -274,7 +306,7 @@ class _AddOrderState extends State<AddOrder> {
                         icon: Icon(
                           Icons.print,
                           size: 30,
-                          color: black2,
+                          color: black3,
                         )),
                   ],
                 ),
@@ -339,57 +371,69 @@ class _AddOrderState extends State<AddOrder> {
               SizedBox(
                 height: 13,
               ),
-              Row(
-                children: [
-                  Flexible(
-                    child: TextField(
-                      style: TextStyle(color: black2),
-                      decoration: InputDecoration(
-                          hintText: 'Phone number',
-                          hintStyle: TextStyle(color: black2),
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: black2,
-                          )),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Flexible(
-                    child: TextField(
-                      style: TextStyle(color: black2),
-                      decoration: InputDecoration(
-                          hintText: 'Oder Description',
-                          hintStyle: TextStyle(color: black2),
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: black2,
-                          )),
-                    ),
-                  ),
-                ],
+              Flexible(
+                child: TextField(
+                  style: TextStyle(color: black2),
+                  decoration: InputDecoration(
+                      hintText: 'Phone number',
+                      hintStyle: TextStyle(color: black2),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: black2,
+                      )),
+                ),
               ),
               SizedBox(
                 height: 13,
               ),
-              Row(
-                children: [
-                  Flexible(
-                    child: customDropDown(
-                        Icons.local_offer_rounded,
-                        'Select District',
-                        ScreenSize().checkScreenType(context) == 'mobile'),
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Flexible(
-                    child: customDropDown(Icons.pin_drop_rounded, 'Select City',
-                        ScreenSize().checkScreenType(context) == 'mobile'),
-                  ),
-                ],
+              Flexible(
+                child: TextField(
+                  style: TextStyle(color: black2),
+                  decoration: InputDecoration(
+                      hintText: 'Oder Description',
+                      hintStyle: TextStyle(color: black2),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: black2,
+                      )),
+                ),
               ),
+              SizedBox(
+                height: 13,
+              ),
+              ScreenSize().checkScreenType(context) == 'web'
+                  ? Row(
+                      children: [
+                        Flexible(
+                          child: customDropDown(
+                              Icons.local_offer_rounded,
+                              'Select District',
+                              ScreenSize().checkScreenType(context) ==
+                                  'mobile'),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Flexible(
+                          child: customDropDown(
+                              Icons.pin_drop_rounded,
+                              'Select City',
+                              ScreenSize().checkScreenType(context) ==
+                                  'mobile'),
+                        ),
+                      ],
+                    )
+                  : Column(children: [
+                      customDropDown(
+                          Icons.local_offer_rounded,
+                          'Select District',
+                          ScreenSize().checkScreenType(context) == 'mobile'),
+                      SizedBox(
+                        height: 13,
+                      ),
+                      customDropDown(Icons.pin_drop_rounded, 'Select City',
+                          ScreenSize().checkScreenType(context) == 'mobile'),
+                    ]),
               SizedBox(
                 height: 13,
               ),
@@ -444,7 +488,9 @@ class _AddOrderState extends State<AddOrder> {
                   text: "Save ",
                   onTap: () {},
                   buttonHeight: h / 12,
-                  width: w / 2.5,
+                  width: ScreenSize().checkScreenType(context) == 'mobile'
+                      ? w / 1.5
+                      : w / 2.5,
                   color: appButtonColorLite),
             ],
           ),
@@ -566,37 +612,30 @@ class _AddOrderState extends State<AddOrder> {
         items: listitems.map((itemone) {
           return DropdownMenuItem(
               value: itemone,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Padding(
+              child: Row(
+                children: [
+                  Icon(
+                    icon,
+                    color: white,
+                  ),
+                  Flexible(
+                    child: Padding(
                       padding: EdgeInsets.all(
                           ScreenSize().checkScreenType(context) == 'mobile'
-                              ? 0.8
-                              : 0.0),
-                      child: Icon(
-                        icon,
-                        color: black1,
+                              ? 8.0
+                              : 8),
+                      child: Text(
+                        itemone,
+                        style: TextStyle(color: white),
                       ),
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.all(
-                            ScreenSize().checkScreenType(context) == 'mobile'
-                                ? 8.0
-                                : 8),
-                        child: Text(
-                          itemone,
-                          style: TextStyle(color: black1),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ));
         }).toList(),
       ),
     );
   }
+
+
 }

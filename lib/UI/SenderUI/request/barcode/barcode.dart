@@ -188,6 +188,7 @@ class _BarcodeState extends State<Barcode> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Card(
+                        color: backgroundColor2,
                         elevation: 20,
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
@@ -197,92 +198,43 @@ class _BarcodeState extends State<Barcode> {
                               SizedBox(
                                 height: 4,
                               ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: SizedBox(
-                                      height: h / 13,
-                                      child: TextField(
-                                        keyboardType: TextInputType.multiline,
-                                        decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.search),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          border: InputBorder.none,
-                                          filled: true,
-                                          hintText: 'Barcode Qty',
-                                          fillColor: white,
+                              ScreenSize().checkScreenType(context) == 'web'
+                                  ? Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                            child:
+                                                CustomTextFeild('Barcode Qty')),
+                                        SizedBox(
+                                          width: 12,
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Flexible(
-                                    child: SizedBox(
-                                      height: h / 13,
-                                      child: TextField(
-                                        keyboardType: TextInputType.multiline,
-                                        decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.search),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          border: InputBorder.none,
-                                          filled: true,
-                                          hintText: 'Proof of Delivery Qty',
-                                          fillColor: white,
+                                        Flexible(
+                                            child: CustomTextFeild(
+                                                'Proof of Delivery Qty')),
+                                        SizedBox(
+                                          width: 12,
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Flexible(
-                                    child: SizedBox(
-                                      height: h / 13,
-                                      child: TextField(
-                                        keyboardType: TextInputType.multiline,
-                                        decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.search),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          border: InputBorder.none,
-                                          filled: true,
-                                          hintText: 'Remarks',
-                                          fillColor: white,
+                                        Flexible(
+                                            child: CustomTextFeild('Remarks')),
+                                      ],
+                                    )
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CustomTextFeild('Barcode Qty'),
+                                        SizedBox(
+                                          height: 12,
                                         ),
-                                      ),
+                                        CustomTextFeild(
+                                            'Proof of Delivery Qty'),
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        CustomTextFeild('Remarks'),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
                               SizedBox(
                                 height: 20,
                               ),
@@ -297,7 +249,7 @@ class _BarcodeState extends State<Barcode> {
                                                 'web'
                                             ? w / 4
                                             : w / 10,
-                                    color: Color.fromARGB(255, 6, 105, 121)),
+                                    color: appButtonColorLite),
                               ),
                             ],
                           ),
@@ -372,6 +324,7 @@ class _BarcodeState extends State<Barcode> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Card(
+                                            color: backgroundColor2,
                                             elevation: 20,
                                             child: SizedBox(
                                               width: ScreenSize()
@@ -389,6 +342,8 @@ class _BarcodeState extends State<Barcode> {
                                                 sortAscending: true,
                                                 showBottomBorder: true,
                                                 border: TableBorder.all(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
                                                   style: BorderStyle.solid,
                                                   color: Colors.black12,
                                                   width: 0.5,
@@ -475,6 +430,30 @@ class _BarcodeState extends State<Barcode> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  CustomTextFeild(String hintText) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    return SizedBox(
+      height: h / 13,
+      child: TextField(
+        keyboardType: TextInputType.multiline,
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.search),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: white)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: white)),
+          border: InputBorder.none,
+          filled: true,
+          hintText: hintText,
+          fillColor: white,
+        ),
       ),
     );
   }

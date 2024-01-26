@@ -12,7 +12,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Future.delayed(Duration(milliseconds: 3000)).then((value) => Navigator.push(
+    Future.delayed(Duration(seconds: 2)).then((value) => Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => Login(),
@@ -34,7 +34,7 @@ class _SplashState extends State<Splash> {
           ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: SizedBox(
-                  height: h / 5, child: Image.asset('assets/icons.PNG'))),
+                  height: h / 5, child: Image.asset('assets/splash.jpg'))),
         ]),
       ),
     );

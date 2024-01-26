@@ -59,7 +59,11 @@ class _CreateIssuesState extends State<CreateIssues> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                alignment: Alignment.centerRight,
+                                alignment:
+                                    ScreenSize().checkScreenType(context) ==
+                                            'web'
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
                                 child: Text(
                                   'With this * mark all fields are required',
                                   style: TextStyle(
@@ -72,7 +76,11 @@ class _CreateIssuesState extends State<CreateIssues> {
                                 height: 12,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    ScreenSize().checkScreenType(context) ==
+                                            'web'
+                                        ? MainAxisAlignment.end
+                                        : MainAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Do You Have A Tracking ID ?',
@@ -118,7 +126,11 @@ class _CreateIssuesState extends State<CreateIssues> {
                                         ),
                                         SizedBox(
                                           height: h / 13,
-                                          width: w / 4,
+                                          width: ScreenSize().checkScreenType(
+                                                      context) ==
+                                                  'web'
+                                              ? w / 4
+                                              : w,
                                           child: TextField(
                                             keyboardType:
                                                 TextInputType.multiline,
@@ -157,7 +169,11 @@ class _CreateIssuesState extends State<CreateIssues> {
                                 height: 12,
                               ),
                               SizedBox(
-                                  width: w / 4,
+                                  width:
+                                      ScreenSize().checkScreenType(context) ==
+                                              'web'
+                                          ? w / 4
+                                          : w,
                                   height: h / 13,
                                   child: customDropDown(
                                       Icons.circle_outlined, 'Select', true)),
@@ -207,7 +223,9 @@ class _CreateIssuesState extends State<CreateIssues> {
                               SizedBox(
                                 height: 12,
                               ),
-                              Row(
+                              Wrap(
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
                                   InkWell(
                                     onTap: () async {
@@ -269,7 +287,7 @@ class _CreateIssuesState extends State<CreateIssues> {
                                 ],
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 22,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -281,7 +299,7 @@ class _CreateIssuesState extends State<CreateIssues> {
                                       width: ScreenSize()
                                                   .checkScreenType(context) !=
                                               'web'
-                                          ? w / 4
+                                          ? w / 3
                                           : w / 10,
                                       color: Color.fromARGB(255, 168, 57, 24)),
                                   SizedBox(
@@ -294,7 +312,7 @@ class _CreateIssuesState extends State<CreateIssues> {
                                       width: ScreenSize()
                                                   .checkScreenType(context) !=
                                               'web'
-                                          ? w / 4
+                                          ? w / 3
                                           : w / 10,
                                       color: Color.fromARGB(255, 12, 128, 16))
                                 ],

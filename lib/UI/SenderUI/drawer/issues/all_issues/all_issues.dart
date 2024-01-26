@@ -217,59 +217,113 @@ class _AllIssuesState extends State<AllIssues> {
                               SizedBox(
                                 height: 4,
                               ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: SizedBox(
-                                      height: h / 13,
-                                      child: TextField(
-                                        keyboardType: TextInputType.multiline,
-                                        decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.search),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          border: InputBorder.none,
-                                          filled: true,
-                                          hintText:
-                                              'search issue id or waybill',
-                                          fillColor: white,
+                              ScreenSize().checkScreenType(context) == 'web'
+                                  ? Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: SizedBox(
+                                            height: h / 13,
+                                            child: TextField(
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              decoration: InputDecoration(
+                                                prefixIcon: Icon(Icons.search),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        borderSide: BorderSide(
+                                                            color: white)),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        borderSide: BorderSide(
+                                                            color: white)),
+                                                border: InputBorder.none,
+                                                filled: true,
+                                                hintText:
+                                                    'search issue id or waybill',
+                                                fillColor: white,
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        SizedBox(
+                                          width: 12,
+                                        ),
+                                        Flexible(
+                                          child: SizedBox(
+                                              width: w / 4,
+                                              child: customDropDown(
+                                                  Icons.circle_outlined,
+                                                  'Status',
+                                                  true)),
+                                        ),
+                                        SizedBox(
+                                          width: 12,
+                                        ),
+                                        Flexible(
+                                          child: SizedBox(
+                                              width: w / 4,
+                                              child: customDropDown(
+                                                  Icons.circle_outlined,
+                                                  'Complain Type',
+                                                  true)),
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: h / 13,
+                                          child: TextField(
+                                            keyboardType:
+                                                TextInputType.multiline,
+                                            decoration: InputDecoration(
+                                              prefixIcon: Icon(Icons.search),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide:
+                                                      BorderSide(color: white)),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  borderSide:
+                                                      BorderSide(color: white)),
+                                              border: InputBorder.none,
+                                              filled: true,
+                                              hintText:
+                                                  'search issue id or waybill',
+                                              fillColor: white,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        SizedBox(
+                                            child: customDropDown(
+                                                Icons.circle_outlined,
+                                                'Status',
+                                                true)),
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        SizedBox(
+                                            child: customDropDown(
+                                                Icons.circle_outlined,
+                                                'Complain Type',
+                                                true)),
+                                      ],
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Flexible(
-                                    child: SizedBox(
-                                        width: w / 4,
-                                        child: customDropDown(
-                                            Icons.circle_outlined,
-                                            'Status',
-                                            true)),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Flexible(
-                                    child: SizedBox(
-                                        width: w / 4,
-                                        child: customDropDown(
-                                            Icons.circle_outlined,
-                                            'Complain Type',
-                                            true)),
-                                  ),
-                                ],
-                              ),
                               SizedBox(
                                 height: 20,
                               ),
@@ -376,7 +430,8 @@ class _AllIssuesState extends State<AllIssues> {
                                                         AppColors.borderColor),
                                                 sortAscending: true,
                                                 showBottomBorder: true,
-                                                border: TableBorder.all(
+                                                border: TableBorder.all( borderRadius:
+                                                  BorderRadius.circular(12),
                                                   style: BorderStyle.solid,
                                                   color: Colors.black12,
                                                   width: 0.5,

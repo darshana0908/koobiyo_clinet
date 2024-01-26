@@ -158,7 +158,8 @@ class _ReceivedCODState extends State<ReceivedCOD> {
                               headingRowColor: MaterialStateProperty.all(
                                   AppColors.borderColor),
                               columnSpacing: 10,
-                              border: TableBorder.all(
+                              border: TableBorder.all( borderRadius:
+                                                  BorderRadius.circular(12),
                                 color: Colors.black12,
                                 width: 0.5,
                               ),

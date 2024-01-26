@@ -123,48 +123,44 @@ class _ResolvedIssuesState extends State<ResolvedIssues> {
                               SizedBox(
                                 height: 4,
                               ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Flexible(
-                                    child: SizedBox(
-                                      height: h / 13,
-                                      child: TextField(
-                                        keyboardType: TextInputType.multiline,
-                                        decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.search),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide:
-                                                  BorderSide(color: white)),
-                                          border: InputBorder.none,
-                                          filled: true,
-                                          hintText:
-                                              'search issue id or waybill',
-                                          fillColor: white,
+                              ScreenSize().checkScreenType(context) == 'web'
+                                  ? Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: SizedBox(
+                                              height: h / 13,
+                                              child: CustomTextField()),
                                         ),
-                                      ),
+                                        SizedBox(
+                                          width: 12,
+                                        ),
+                                        Flexible(
+                                          child: SizedBox(
+                                              width: w / 4,
+                                              child: customDropDown(
+                                                  Icons.circle_outlined,
+                                                  'Complain Type',
+                                                  true)),
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      children: [
+                                        SizedBox(
+                                            height: h / 13,
+                                            child: CustomTextField()),
+                                        SizedBox(
+                                          height: 13,
+                                        ),
+                                        SizedBox(
+                                            child: customDropDown(
+                                                Icons.circle_outlined,
+                                                'Complain Type',
+                                                true)),
+                                      ],
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                  Flexible(
-                                    child: SizedBox(
-                                        width: w / 4,
-                                        child: customDropDown(
-                                            Icons.circle_outlined,
-                                            'Complain Type',
-                                            true)),
-                                  ),
-                                ],
-                              ),
                               SizedBox(
                                 height: 20,
                               ),
@@ -272,6 +268,8 @@ class _ResolvedIssuesState extends State<ResolvedIssues> {
                                                 sortAscending: true,
                                                 showBottomBorder: true,
                                                 border: TableBorder.all(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
                                                   style: BorderStyle.solid,
                                                   color: Colors.black12,
                                                   width: 0.5,
@@ -355,6 +353,25 @@ class _ResolvedIssuesState extends State<ResolvedIssues> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  CustomTextField() {
+    return TextField(
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.search),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: white)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: white)),
+        border: InputBorder.none,
+        filled: true,
+        hintText: 'search issue id or waybill',
+        fillColor: white,
       ),
     );
   }

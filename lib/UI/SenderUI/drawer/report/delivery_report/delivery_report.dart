@@ -111,7 +111,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               SizedBox(
@@ -300,7 +300,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
                                           selectDate(context, true);
                                         },
                                         decoration: InputDecoration(
-                                            hintText: 'Select Start Date',
+                                            hintText: 'Start Date',
                                             prefixIcon: Icon(Icons.date_range)),
                                       ),
                                     ),
@@ -315,7 +315,7 @@ class _DeliveryReportState extends State<DeliveryReport> {
                                           selectDate(context, false);
                                         },
                                         decoration: InputDecoration(
-                                            hintText: 'Select End Date',
+                                            hintText: 'End Date',
                                             prefixIcon: Icon(Icons.date_range)),
                                       ),
                                     ),
@@ -441,7 +441,8 @@ class _DeliveryReportState extends State<DeliveryReport> {
                                                 'web'
                                             ? 10
                                             : null,
-                                        border: TableBorder.all(
+                                        border: TableBorder.all( borderRadius:
+                                                  BorderRadius.circular(12),
                                           color: Colors.black12,
                                           width: 0.5,
                                         ),

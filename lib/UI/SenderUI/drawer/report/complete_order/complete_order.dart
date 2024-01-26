@@ -111,7 +111,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               SizedBox(
@@ -264,7 +264,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                           selectDate(context, true);
                                         },
                                         decoration: InputDecoration(
-                                            hintText: 'Select Start Date',
+                                            hintText: 'Start Date',
                                             prefixIcon: Icon(Icons.date_range)),
                                       ),
                                     ),
@@ -279,7 +279,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                           selectDate(context, false);
                                         },
                                         decoration: InputDecoration(
-                                            hintText: 'Select End Date',
+                                            hintText: 'End Date',
                                             prefixIcon: Icon(Icons.date_range)),
                                       ),
                                     ),
@@ -406,6 +406,8 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                             ? 10
                                             : null,
                                         border: TableBorder.all(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           color: Colors.black12,
                                           width: 0.5,
                                         ),

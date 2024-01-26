@@ -233,6 +233,7 @@ class _PickupRequestState extends State<PickupRequest> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Card(
+                                            color: backgroundColor2,
                                             elevation: 20,
                                             child: SizedBox(
                                               width: ScreenSize()
@@ -250,6 +251,8 @@ class _PickupRequestState extends State<PickupRequest> {
                                                 sortAscending: true,
                                                 showBottomBorder: true,
                                                 border: TableBorder.all(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
                                                   style: BorderStyle.solid,
                                                   color: Colors.black12,
                                                   width: 0.5,

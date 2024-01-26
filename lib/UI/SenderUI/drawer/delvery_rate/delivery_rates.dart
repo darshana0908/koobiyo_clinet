@@ -165,7 +165,8 @@ class _MyDataTableState extends State<MyDataTable> {
                                     AppColors.borderColor),
                                 sortAscending: true,
                                 showBottomBorder: true,
-                                border: TableBorder.all(
+                                border: TableBorder.all( borderRadius:
+                                                  BorderRadius.circular(12),
                                   style: BorderStyle.solid,
                                   color: Colors.black12,
                                   width: 0.5,

@@ -41,6 +41,12 @@ Color stackColor1 = Color.fromARGB(255, 37, 159, 207);
 Color stackColor2 = Color.fromARGB(255, 78, 175, 255);
 Color appBarColor = Color.fromARGB(255, 4, 39, 79);
 Color appButtonColorLite = Color.fromARGB(255, 13, 154, 255);
+Color accentPurpleColor = Color(0xFF6A53A1);
+Color primaryColor = Color(0xFF121212);
+Color accentPinkColor = Color(0xFFF99BBD);
+Color accentDarkGreenColor = Color(0xFF115C49);
+Color accentYellowColor = Color(0xFFFFB612);
+Color accentOrangeColor = Color(0xFFEA7A3B);
 
 class AppColors {
   static const Color primary = contentColorCyan;

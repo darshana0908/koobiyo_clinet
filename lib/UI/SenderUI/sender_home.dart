@@ -1,10 +1,13 @@
 import 'package:client_app/UI/SenderUI/drawer/drawer.dart';
+import 'package:client_app/UI/SenderUI/drawer/notification/notification.dart';
+import 'package:client_app/class/dialog.dart';
 import 'package:client_app/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:provider/provider.dart';
 import '../../const/color.dart';
 import '../../const/const.dart';
+import 'drawer/Profile/OTP/OTP.dart';
 
 class SenderHome extends StatelessWidget {
   SenderHome({super.key});
@@ -33,7 +36,7 @@ class SenderHome extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30))),
-                backgroundColor: appBarColor,
+                backgroundColor: Color.fromARGB(255, 6, 61, 145),
                 actions: appBarButtonn(context),
                 bottom: PreferredSize(
                     preferredSize: Size(w, h / 15),
@@ -104,26 +107,14 @@ class SenderHome extends StatelessWidget {
           padding: ScreenSize().checkScreenType(context) == 'small'
               ? EdgeInsets.all(0)
               : null,
-          onPressed: () {},
-          icon: FittedBox(
-            child: Icon(
-              Icons.grid_view_outlined,
-              color: white2,
-              size:
-                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
-            ),
-          )),
-      IconButton(
-          autofocus: true,
-          padding: ScreenSize().checkScreenType(context) == 'small'
-              ? EdgeInsets.all(0)
-              : null,
-          onPressed: () {},
+          onPressed: () {
+            CustomDialog().info(context, '', 'Do you want Continue', () {});
+          },
           icon: FittedBox(
             child: Icon(
               size:
                   ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
-              Icons.directions_subway_filled_rounded,
+              Icons.local_shipping_rounded,
               color: white2,
             ),
           )),
@@ -132,26 +123,32 @@ class SenderHome extends StatelessWidget {
           padding: ScreenSize().checkScreenType(context) == 'small'
               ? EdgeInsets.all(2)
               : null,
-          onPressed: () {},
-          icon: FittedBox(
-            child: Icon(
-              size:
-                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
-              Icons.view_list_sharp,
-              color: white2,
-            ),
-          )),
-      IconButton(
-          autofocus: true,
-          padding: ScreenSize().checkScreenType(context) == 'small'
-              ? EdgeInsets.all(2)
-              : null,
-          onPressed: () {},
+          onPressed: () {
+            Provider.of<ProviderS>(context, listen: false).selectedWidet =
+                NotificationScreen();
+          },
           icon: FittedBox(
             child: Icon(
               size:
                   ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
               Icons.notification_important_sharp,
+              color: white2,
+            ),
+          )),
+      IconButton(
+          autofocus: true,
+          padding: ScreenSize().checkScreenType(context) == 'small'
+              ? EdgeInsets.all(2)
+              : null,
+          onPressed: () {
+            Provider.of<ProviderS>(context, listen: false).selectedWidet =
+                OTP();
+          },
+          icon: FittedBox(
+            child: Icon(
+              size:
+                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
+              Icons.person,
               color: white2,
             ),
           )),

@@ -41,8 +41,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home:
-            // ScreenSize().checkScreenType(context) != 'web' ? Login() :
-            Splash(),
+            ScreenSize().checkScreenType(context) != 'web' ? Login() : Splash(),
       );
     });
   }

@@ -286,7 +286,9 @@ class _LoginState extends State<Login> {
               Column(
                 children: [
                   SizedBox(
-                      height: h / 2.2,
+                      height: ScreenSize().checkScreenType(context) == 'mobile'
+                          ? h / 3.5
+                          : h / 2.2,
                       child: Lottie.asset('assets/intro3.json')),
                   Text(
                     "Choose you'r account",
