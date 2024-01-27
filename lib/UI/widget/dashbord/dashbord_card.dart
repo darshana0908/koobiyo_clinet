@@ -22,6 +22,7 @@ class DashboardCard extends StatefulWidget {
 }
 
 class _DashboardCardState extends State<DashboardCard> {
+  // Color.fromARGB(255, 10, 38, 86).withOpacity(0.7),
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -30,9 +31,9 @@ class _DashboardCardState extends State<DashboardCard> {
       child: AnimationConfiguration.synchronized(
         child: Card(
           elevation: 20,
-          color: Color.fromARGB(255, 10, 38, 86).withOpacity(0.7),
+          color: appButtonColorLite,
           child: Card(
-            color: Color.fromARGB(255, 0, 21, 57).withOpacity(0.7),
+            color: Color.fromARGB(255, 12, 93, 131),
             elevation: 50,
             margin: EdgeInsets.all(0),
             child: Container(
@@ -84,7 +85,7 @@ class _DashboardCardState extends State<DashboardCard> {
                                       widget.text,
                                       style: TextStyle(
                                         fontSize: 12.dp,
-                                        color: white3,
+                                        color: white2,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),

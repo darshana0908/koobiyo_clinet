@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'dart:ui';
 
@@ -30,6 +31,38 @@ class ProviderS with ChangeNotifier {
 
   set currentWidget(int i) {
     _currentWidget = i;
+    notifyListeners();
+  }
+
+  String _type = 'NIC';
+  String get type => _type;
+
+  set type(String i) {
+    _type = i;
+    notifyListeners();
+  }
+
+  File? _nicFront;
+  File get nicFront => _nicFront!;
+
+  set nicFront(File i) {
+    _nicFront = i;
+    notifyListeners();
+  }
+
+  File? _nicBack;
+  File get nicBack => _nicBack!;
+
+  set nicBack(File i) {
+    _nicBack = i;
+    notifyListeners();
+  }
+
+  File? _brCopy;
+  File get brCopy => _brCopy!;
+
+  set brCopy(File i) {
+    _brCopy = i;
     notifyListeners();
   }
 

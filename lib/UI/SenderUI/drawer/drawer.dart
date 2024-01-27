@@ -447,7 +447,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                                 ? white.withOpacity(0.2)
                                 : titleIndex == buttonList[index]['id']
                                     ? white.withOpacity(0.2)
-                                    : black.withOpacity(0.5),
+                                    : Color.fromARGB(255, 3, 2, 14)
+                                        .withOpacity(0.5),
                             icon: buttonList[index]['icon'],
                             text: buttonList[index]['text']);
                       },
@@ -476,7 +477,8 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
         child: Card(
           margin: EdgeInsets.all(0),
           key: Key(key),
-          color: key == selectIndex ? red : black.withOpacity(0.2),
+          color:
+              key == selectIndex ? appButtonColorLite : black.withOpacity(0.2),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Container(
             width: w,
@@ -492,7 +494,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                       )),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
-                    color: Colors.green,
+                    color: white1,
                     size: 20,
                   )
                 ],

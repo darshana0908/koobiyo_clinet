@@ -113,7 +113,7 @@ class _DashBoardState extends State<DashBoard> {
             SizedBox(
               height: 20,
             ),
-            Card(color: black, elevation: 20, child: CustomChart()),
+            Card(color: Colors.blueAccent, elevation: 20, child: CustomChart()),
             Card(color: black, elevation: 20, child: CustomChart2()),
             Card(color: black, elevation: 20, child: CustomChart2()),
           ],
