@@ -58,128 +58,27 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                     SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: w / 2,
-                            child: addOder(),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Flexible(
-                              child: Column(
-                            children: [
-                              Card(
-                                elevation: 20,
-                                color: Colors.orangeAccent,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: SizedBox(
-                                    width: w,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'OTP Verification',
-                                          style: TextStyle(
-                                              color: black,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 12,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Flexible(
-                                              child: Text(
-                                                'Enable or Disable Finance OTP',
-                                                style: TextStyle(
-                                                    color: black1,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 8,
-                                            ),
-                                            Checkbox(
-                                              value: true,
-                                              onChanged: (value) {},
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                    ScreenSize().checkScreenType(context) == 'web'
+                        ? Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: w / 2,
+                                  child: addOder(),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Card(
-                                elevation: 20,
-                                color: Colors.orangeAccent,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: SizedBox(
-                                    width: w,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Profile Verification',
-                                          style: TextStyle(
-                                              color: black,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 12,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Flexible(
-                                              child: Text(
-                                                'Pending Verification',
-                                                style: TextStyle(
-                                                    color: black1,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 8,
-                                            ),
-                                            Checkbox(
-                                              value: true,
-                                              onChanged: (value) {},
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                SizedBox(
+                                  width: 12,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 12,
-                              ),
-                              uploadOder()
-                            ],
-                          ))
-                        ],
-                      ),
-                    )
+                                Flexible(child: profileVerify())
+                              ],
+                            ),
+                          )
+                        : Column(
+                            children: [profileVerify(), addOder()],
+                          )
                   ],
                 ),
               )
@@ -187,6 +86,112 @@ class _ProfileDetailsState extends State<ProfileDetails> {
           ),
         )),
       ),
+    );
+  }
+
+  Widget profileVerify() {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    return Column(
+      children: [
+        Card(
+          elevation: 20,
+          color: Colors.orangeAccent,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SizedBox(
+              width: w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'OTP Verification',
+                    style: TextStyle(
+                        color: black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'Enable or Disable Finance OTP',
+                          style: TextStyle(
+                              color: black1,
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Checkbox(
+                        value: true,
+                        onChanged: (value) {},
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Card(
+          elevation: 20,
+          color: Colors.orangeAccent,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SizedBox(
+              width: w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Profile Verification',
+                    style: TextStyle(
+                        color: black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'Pending Verification',
+                          style: TextStyle(
+                              color: black1,
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Checkbox(
+                        value: true,
+                        onChanged: (value) {},
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        uploadOder()
+      ],
     );
   }
 
@@ -480,16 +485,31 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               SizedBox(
                 height: 13,
               ),
+              Flexible(
+                child: TextField(
+                  style: TextStyle(color: black, fontSize: 12),
+                  decoration: InputDecoration(
+                      hintText: 'Account Holder Name',
+                      hintStyle: TextStyle(color: black2),
+                      prefixIcon: Icon(
+                        Icons.person_2_outlined,
+                        color: black2,
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 13,
+              ),
               Row(
                 children: [
                   Flexible(
                     child: TextField(
                       style: TextStyle(color: black, fontSize: 12),
                       decoration: InputDecoration(
-                          hintText: 'Account Holder Name',
+                          hintText: 'Branch Name',
                           hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
-                            Icons.person_2_outlined,
+                            Icons.add_chart_outlined,
                             color: black2,
                           )),
                     ),
@@ -505,21 +525,6 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           hintStyle: TextStyle(color: black2),
                           prefixIcon: Icon(
                             Icons.add_to_photos_sharp,
-                            color: black2,
-                          )),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Flexible(
-                    child: TextField(
-                      style: TextStyle(color: black, fontSize: 12),
-                      decoration: InputDecoration(
-                          hintText: 'Branch Name',
-                          hintStyle: TextStyle(color: black2),
-                          prefixIcon: Icon(
-                            Icons.add_chart_outlined,
                             color: black2,
                           )),
                     ),

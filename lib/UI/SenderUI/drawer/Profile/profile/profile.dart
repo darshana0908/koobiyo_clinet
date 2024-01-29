@@ -69,7 +69,8 @@ class _ProfileState extends State<Profile> {
             insetPadding: EdgeInsets.all(8),
             contentPadding: EdgeInsets.all(0),
             content: SizedBox(
-              width: w / 2,
+              width:
+                  ScreenSize().checkScreenType(context) == 'web' ? w / 2 : null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -111,7 +112,11 @@ class _ProfileState extends State<Profile> {
                               width: 12,
                             ),
                             SizedBox(
-                                width: w / 5, child: customDropDown1(true)),
+                                width: ScreenSize().checkScreenType(context) ==
+                                        'web'
+                                    ? w / 5
+                                    : w / 3,
+                                child: customDropDown1(true)),
                           ],
                         ),
                         SizedBox(
@@ -123,7 +128,8 @@ class _ProfileState extends State<Profile> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   nicFront == null
-                                      ? imageUploadButton(() async {
+                                      ? Flexible(
+                                          child: imageUploadButton(() async {
                                           final ImagePicker _picker =
                                               ImagePicker();
 
@@ -134,7 +140,7 @@ class _ProfileState extends State<Profile> {
                                             webnicFront = f;
                                             nicFront = img;
                                           });
-                                        }, 'UPLOAD NIC \nFRONT HERE')
+                                        }, 'UPLOAD NIC \nFRONT HERE'))
                                       : ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -145,8 +151,12 @@ class _ProfileState extends State<Profile> {
                                                   : Image.file(
                                                       File(nicFront!.path))),
                                         ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
                                   nicBack == null
-                                      ? imageUploadButton(() async {
+                                      ? Flexible(
+                                          child: imageUploadButton(() async {
                                           final ImagePicker _picker =
                                               ImagePicker();
                                           final img = await _picker.pickImage(
@@ -157,7 +167,7 @@ class _ProfileState extends State<Profile> {
                                             nicBack = img;
                                             webnicBack = f;
                                           });
-                                        }, 'UPLOAD NIC \nBACK HERE')
+                                        }, 'UPLOAD NIC \nBACK HERE'))
                                       : ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -171,7 +181,8 @@ class _ProfileState extends State<Profile> {
                                 ],
                               )
                             : brCopy == null
-                                ? imageUploadButton(() async {
+                                ? Flexible(
+                                    child: imageUploadButton(() async {
                                     final ImagePicker _picker = ImagePicker();
                                     final img = await _picker.pickImage(
                                         source: ImageSource.gallery);
@@ -180,7 +191,7 @@ class _ProfileState extends State<Profile> {
                                       webbrCopy = f;
                                       brCopy = img;
                                     });
-                                  }, 'UPLOAD BR \nCOPY HERE')
+                                  }, 'UPLOAD BR \nCOPY HERE'))
                                 : ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: SizedBox(
@@ -243,7 +254,8 @@ class _ProfileState extends State<Profile> {
             insetPadding: EdgeInsets.all(8),
             contentPadding: EdgeInsets.all(0),
             content: SizedBox(
-              width: w / 2,
+              width:
+                  ScreenSize().checkScreenType(context) == 'web' ? w / 2 : null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -285,7 +297,11 @@ class _ProfileState extends State<Profile> {
                               width: 12,
                             ),
                             SizedBox(
-                                width: w / 5, child: customDropDown1(true)),
+                                width: ScreenSize().checkScreenType(context) ==
+                                        'web'
+                                    ? w / 5
+                                    : w / 3,
+                                child: customDropDown1(true)),
                           ],
                         ),
                         SizedBox(
@@ -342,7 +358,8 @@ class _ProfileState extends State<Profile> {
             insetPadding: EdgeInsets.all(8),
             contentPadding: EdgeInsets.all(0),
             content: SizedBox(
-              width: w / 2,
+              width:
+                  ScreenSize().checkScreenType(context) == 'web' ? w / 2 : null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -394,7 +411,11 @@ class _ProfileState extends State<Profile> {
                               width: 12,
                             ),
                             SizedBox(
-                                width: w / 5, child: customDropDown1(true)),
+                                width: ScreenSize().checkScreenType(context) ==
+                                        'web'
+                                    ? w / 5
+                                    : w / 3,
+                                child: customDropDown1(true)),
                           ],
                         ),
                         SizedBox(
@@ -414,7 +435,11 @@ class _ProfileState extends State<Profile> {
                               width: 12,
                             ),
                             SizedBox(
-                                width: w / 5, child: customDropDown1(true)),
+                                width: ScreenSize().checkScreenType(context) ==
+                                        'web'
+                                    ? w / 5
+                                    : w / 3,
+                                child: customDropDown1(true)),
                           ],
                         ),
                         SizedBox(
@@ -503,7 +528,8 @@ class _ProfileState extends State<Profile> {
             insetPadding: EdgeInsets.all(8),
             contentPadding: EdgeInsets.all(0),
             content: SizedBox(
-              width: w / 2,
+              width:
+                  ScreenSize().checkScreenType(context) == 'web' ? w / 2 : null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -555,7 +581,11 @@ class _ProfileState extends State<Profile> {
                               width: 12,
                             ),
                             SizedBox(
-                                width: w / 5, child: customDropDown1(true)),
+                                width: ScreenSize().checkScreenType(context) ==
+                                        'web'
+                                    ? w / 5
+                                    : w / 3,
+                                child: customDropDown1(true)),
                           ],
                         ),
                         SizedBox(
@@ -575,7 +605,11 @@ class _ProfileState extends State<Profile> {
                               width: 12,
                             ),
                             SizedBox(
-                                width: w / 5, child: customDropDown1(true)),
+                                width: ScreenSize().checkScreenType(context) ==
+                                        'web'
+                                    ? w / 5
+                                    : w / 3,
+                                child: customDropDown1(true)),
                           ],
                         ),
                         SizedBox(
@@ -651,7 +685,7 @@ class _ProfileState extends State<Profile> {
     var w = MediaQuery.of(context).size.width;
     Consumer<ProviderS>(
       builder: (context, provider, child) => SizedBox(
-        width: w / 2,
+        width: ScreenSize().checkScreenType(context) == 'web' ? w / 2 : null,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -868,6 +902,7 @@ class _ProfileState extends State<Profile> {
           child: DropdownButton(
             style: TextStyle(backgroundColor: white),
             dropdownColor: white,
+
             borderRadius: BorderRadius.circular(10),
             focusColor: white,
             icon: Icon(
@@ -970,7 +1005,7 @@ class _ProfileState extends State<Profile> {
           borderRadius: BorderRadius.all(Radius.circular(12)),
           child: Container(
             alignment: Alignment.center,
-            height: h / 7,
+            // height: h / 7,
             width:
                 ScreenSize().checkScreenType(context) == 'web' ? w / 6 : w / 4,
             child: Column(

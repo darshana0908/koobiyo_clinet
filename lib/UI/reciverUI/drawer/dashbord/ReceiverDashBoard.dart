@@ -1,23 +1,31 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:client_app/UI/widget/dashbord/chart3.dart';
+import 'package:client_app/UI/widget/dashbord/dashbord_card.dart';
 import 'package:client_app/const/color.dart';
 import 'package:client_app/const/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import '../../../../class/dialog.dart';
-import '../../../widget/dashbord/char.dart';
-import '../../../widget/dashbord/dashbord_card.dart';
+import '../../../../../class/dialog.dart';
 
-class DashBoard extends StatefulWidget {
-  const DashBoard({super.key});
+class ReceiverDashBoard extends StatefulWidget {
+  const ReceiverDashBoard({super.key});
 
   @override
-  State<DashBoard> createState() => _DashBoardState();
+  State<ReceiverDashBoard> createState() => _ReceiverDashBoardState();
 }
 
-class _DashBoardState extends State<DashBoard> {
-
+class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+  final List<String> images = [
+    'https://images.unsplash.com/photo-1586882829491-b81178aa622e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
+    'https://images.unsplash.com/photo-1586871608370-4adee64d1794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2862&q=80',
+    'https://images.unsplash.com/photo-1586901533048-0e856dff2c0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'https://images.unsplash.com/photo-1586902279476-3244d8d18285?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
+    'https://images.unsplash.com/photo-1586943101559-4cdcf86a6f87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1556&q=80',
+    'https://images.unsplash.com/photo-1586951144438-26d4e072b891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+    'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  ];
   @override
   void initState() {
     // TODO: implement initState
@@ -31,11 +39,75 @@ class _DashBoardState extends State<DashBoard> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: ScreenSize().checkScreenType(context) == 'mobile'
-            ? mobile()
-            : ScreenSize().checkScreenType(context) == 'web'
-                ? web()
-                : tab());
+        backgroundColor: backgroundColor2,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: h / 1.8,
+                child: CarouselSlider.builder(
+                  itemBuilder: (context, index, realIndex) {
+                    return AnimationConfiguration.synchronized(
+                        child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: SizedBox(
+                          child: Image.network(images[index],
+                              height: h / 3, fit: BoxFit.cover, width: w / 2),
+                        ),
+                      ),
+                    ));
+                  },
+                  itemCount: images.length,
+                  // carouselController: _controller,
+                  options: CarouselOptions(
+                      // padEnds: true,
+                      aspectRatio: 5.0,
+                      autoPlay: true,
+                      disableCenter: true,
+                      viewportFraction: 0.7,
+                      enlargeFactor: 0.4,
+                      enlargeCenterPage: true,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _current = index;
+                        });
+                      }),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: images.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => _controller.animateToPage(entry.key),
+                    child: Container(
+                      width: 12.0,
+                      height: 12.0,
+                      margin:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: (Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)
+                              .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                    ),
+                  );
+                }).toList(),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ScreenSize().checkScreenType(context) == 'mobile'
+                  ? mobile()
+                  : ScreenSize().checkScreenType(context) == 'web'
+                      ? web()
+                      : tab(),
+            ],
+          ),
+        ));
   }
 
   mobile() {
@@ -117,18 +189,6 @@ class _DashBoardState extends State<DashBoard> {
             SizedBox(
               height: 20,
             ),
-            Card(
-                color: const Color.fromARGB(255, 3, 45, 80),
-                elevation: 20,
-                child: CustomChart()),
-            Card(
-                color: const Color.fromARGB(255, 3, 45, 80),
-                elevation: 20,
-                child: CustomChart2()),
-            Card(
-                color: const Color.fromARGB(255, 3, 45, 80),
-                elevation: 20,
-                child: CustomChart2()),
           ],
         ),
       ),
@@ -225,40 +285,6 @@ class _DashBoardState extends State<DashBoard> {
                     SizedBox(
                       height: 30,
                     ),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                                color: const Color.fromARGB(255, 3, 45, 80),
-                                elevation: 20,
-                                child: SizedBox(
-                                    height: h / 2.5, child: CustomChart())),
-                          ),
-                        ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                                color: const Color.fromARGB(255, 3, 45, 80),
-                                elevation: 20,
-                                child: SizedBox(
-                                    height: h / 2.5, child: CustomChart2())),
-                          ),
-                        ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                                color: const Color.fromARGB(255, 3, 45, 80),
-                                elevation: 20,
-                                child: SizedBox(
-                                    height: h / 2.5, child: CustomChart2())),
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),
@@ -339,18 +365,6 @@ class _DashBoardState extends State<DashBoard> {
                     icon: Icons.check)
               ],
             ),
-            Card(
-                color: const Color.fromARGB(255, 3, 45, 80),
-                elevation: 20,
-                child: CustomChart()),
-            Card(
-                color: const Color.fromARGB(255, 3, 45, 80),
-                elevation: 20,
-                child: CustomChart2()),
-            Card(
-                color: const Color.fromARGB(255, 3, 45, 80),
-                elevation: 20,
-                child: CustomChart2()),
           ],
         ),
       ),

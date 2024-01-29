@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'dart:ui';
 
+import 'package:client_app/UI/reciverUI/drawer/dashbord/ReceiverDashBoard.dart';
 import 'package:client_app/const/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,14 @@ class ProviderS with ChangeNotifier {
 
   set selectedWidet(Widget i) {
     _selectedWidet = i;
+    notifyListeners();
+  }
+
+  Widget _receiverSelectWidget = ReceiverDashBoard();
+  Widget get receiverSelectWidget => _receiverSelectWidget;
+
+  set receiverSelectWidget(Widget i) {
+    _receiverSelectWidget = i;
     notifyListeners();
   }
 }

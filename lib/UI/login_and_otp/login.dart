@@ -10,6 +10,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../const/const.dart';
+import '../reciverUI/reciver_home.dart';
 import '../widget/dialog)button2.dart';
 
 class Login extends StatefulWidget {
@@ -346,7 +347,13 @@ class _LoginState extends State<Login> {
                   ),
                   DialogButton2(
                     text: 'Receiver',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReceiverUI(),
+                          ));
+                    },
                     buttonHeight: h / 10,
                     width: ScreenSize().checkScreenType(context) == 'mobile'
                         ? w

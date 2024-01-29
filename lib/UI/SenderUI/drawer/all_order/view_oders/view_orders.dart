@@ -163,8 +163,8 @@ class _MyDataTableState extends State<MyDataTable> {
                           headingRowColor:
                               MaterialStateProperty.all(AppColors.borderColor),
                           columnSpacing: 10,
-                          border: TableBorder.all( borderRadius:
-                                                  BorderRadius.circular(12),
+                          border: TableBorder.all(
+                            borderRadius: BorderRadius.circular(12),
                             color: Colors.black12,
                             width: 0.5,
                           ),
@@ -210,6 +210,13 @@ class _MyDataTableState extends State<MyDataTable> {
                     ],
                   ),
                 ),
+                _filteredRows.isEmpty
+                    ? Container(
+                        width: w,
+                        height: h / 4,
+                        alignment: Alignment.center,
+                        child: Text('No Data Available'))
+                    : SizedBox(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -247,45 +254,5 @@ class _MyDataTableState extends State<MyDataTable> {
         ],
       ),
     );
-  }
-}
-
-class MyData extends DataTableSource {
-  // Generate some made-up data
-  final List<Map<String, dynamic>> _data = List.generate(
-      200,
-      (index) => {
-            "id": index,
-            "title": "Item $index",
-            "price": Random().nextInt(10000)
-          });
-
-  @override
-  bool get isRowCountApproximate => false;
-  @override
-  int get rowCount => _data.length;
-  @override
-  int get selectedRowCount => 0;
-  @override
-  DataRow getRow(int index) {
-    return DataRow(cells: [
-      DataCell(onTap: () {}, Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-      DataCell(Text(_data[index]["price"].toString())),
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-      DataCell(Text(_data[index]["price"].toString())),
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-      DataCell(Text(_data[index]["price"].toString())),
-      DataCell(onTap: () {}, Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-      DataCell(Text(_data[index]["price"].toString())),
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-      DataCell(Text(_data[index]["price"].toString())),
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]["title"])),
-    ]);
   }
 }

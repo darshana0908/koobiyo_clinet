@@ -17,7 +17,7 @@ class CustomChart2 extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: BarChart(
           BarChartData(
-            backgroundColor: black,
+            backgroundColor: const Color.fromARGB(255, 3, 45, 80),
             barTouchData: barTouchData,
             titlesData: titlesData,
             borderData: FlBorderData(
@@ -35,7 +35,7 @@ class CustomChart2 extends StatelessWidget {
   BarTouchData get barTouchData => BarTouchData(
         enabled: false,
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Color.fromARGB(0, 236, 231, 231),
+          tooltipBgColor: const Color.fromARGB(255, 3, 45, 80),
           tooltipPadding: EdgeInsets.zero,
           getTooltipItem: (
             BarChartGroupData group,
@@ -109,6 +109,7 @@ class CustomChart2 extends StatelessWidget {
       child: Text(text, style: style),
     );
   }
+
 
   FlTitlesData get titlesData => FlTitlesData(
         show: true,
