@@ -201,7 +201,12 @@ class _LoginState extends State<Login> {
                             DialogButton(
                                 text: "Sign in ",
                                 onTap: () {
-                                  userCheck();
+                                  // userCheck();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ReceiverUI(),
+                                      ));
                                 },
                                 buttonHeight: h / 12,
                                 width: ScreenSize().checkScreenType(context) ==

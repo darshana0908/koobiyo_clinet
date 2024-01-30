@@ -93,12 +93,12 @@ class _CustomDrawerButtonState extends State<CustomDrawerButton> {
                   ),
                 ),
                 widget.isTap
-                    ? widget.firstIndex == 1
+                    ? widget.firstIndex == 1 || widget.firstIndex == 2
                         ? SizedBox()
                         : Divider()
                     : SizedBox(),
                 widget.isTap
-                    ? widget.firstIndex == 1
+                    ? widget.firstIndex == 1 || widget.firstIndex == 2
                         ? SizedBox()
                         : Padding(
                             padding: const EdgeInsets.all(8.0),

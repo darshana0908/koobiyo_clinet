@@ -6,6 +6,7 @@ import 'package:client_app/const/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../../../class/dialog.dart';
+import '../../../widget/footer/footer.dart';
 
 class ReceiverDashBoard extends StatefulWidget {
   const ReceiverDashBoard({super.key});
@@ -44,14 +45,22 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
           child: Column(
             children: [
               SizedBox(
-                height: h / 1.8,
+                height: ScreenSize().checkScreenType(context) == 'web'
+                    ? h / 2.5
+                    : h / 3,
                 child: CarouselSlider.builder(
                   itemBuilder: (context, index, realIndex) {
                     return AnimationConfiguration.synchronized(
                         child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(
+                          ScreenSize().checkScreenType(context) == 'web'
+                              ? 12.0
+                              : 0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(
+                            ScreenSize().checkScreenType(context) == 'web'
+                                ? 10
+                                : 0),
                         child: SizedBox(
                           child: Image.network(images[index],
                               height: h / 3, fit: BoxFit.cover, width: w / 2),
@@ -66,7 +75,10 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
                       aspectRatio: 5.0,
                       autoPlay: true,
                       disableCenter: true,
-                      viewportFraction: 0.7,
+                      viewportFraction:
+                          ScreenSize().checkScreenType(context) == 'web'
+                              ? 0.7
+                              : 1,
                       enlargeFactor: 0.4,
                       enlargeCenterPage: true,
                       onPageChanged: (index, reason) {
@@ -82,8 +94,8 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
                   return GestureDetector(
                     onTap: () => _controller.animateToPage(entry.key),
                     child: Container(
-                      width: 12.0,
-                      height: 12.0,
+                      width: 8.0,
+                      height: 8.0,
                       margin:
                           EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                       decoration: BoxDecoration(
@@ -91,20 +103,24 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
                           color: (Theme.of(context).brightness ==
                                       Brightness.dark
                                   ? Colors.white
-                                  : Colors.black)
+                                  : Colors.black45)
                               .withOpacity(_current == entry.key ? 0.9 : 0.4)),
                     ),
                   );
                 }).toList(),
               ),
               SizedBox(
-                height: 20,
+                height: 7,
               ),
               ScreenSize().checkScreenType(context) == 'mobile'
                   ? mobile()
                   : ScreenSize().checkScreenType(context) == 'web'
                       ? web()
                       : tab(),
+              SizedBox(
+                height: 30,
+              ),
+              Footer()
             ],
           ),
         ));
@@ -115,13 +131,9 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
 
     return Container(
       color: backgroundColor.withOpacity(0.9),
-      height: h,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 135,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -186,9 +198,6 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
                     icon: Icons.check)
               ],
             ),
-            SizedBox(
-              height: 20,
-            ),
           ],
         ),
       ),
@@ -203,7 +212,6 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
         children: [
           Container(
             color: backgroundColor.withOpacity(0.9),
-            height: h,
             child: SingleChildScrollView(
               child: AnimationConfiguration.synchronized(
                 child: Column(
@@ -281,9 +289,6 @@ class _ReceiverDashBoardState extends State<ReceiverDashBoard> {
                                   icon: Icons.check))
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 30,
                     ),
                   ],
                 ),

@@ -18,7 +18,6 @@ class ReceiverUI extends StatelessWidget {
     var w = MediaQuery.of(context).size.width;
     return Consumer<ProviderS>(
       builder: (context, provider, child) => Scaffold(
-        extendBodyBehindAppBar: true,
         backgroundColor: brown,
         appBar: ScreenSize().checkScreenType(context) == 'web'
             ? null
@@ -32,22 +31,8 @@ class ReceiverUI extends StatelessWidget {
                     size: ScreenSize().checkScreenType(context) == 'small'
                         ? 10
                         : 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
                 backgroundColor: Color.fromARGB(255, 6, 61, 145),
                 actions: appBarButtonn(context),
-                bottom: PreferredSize(
-                    preferredSize: Size(w, h / 15),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: SizedBox(
-                          width: ScreenSize().checkScreenType(context) == 'tab'
-                              ? w / 2
-                              : w,
-                          child: serchBarr(context)),
-                    )),
               ),
         drawer: ScreenSize().checkScreenType(context) == 'web'
             ? null
@@ -102,22 +87,6 @@ class ReceiverUI extends StatelessWidget {
 
   appBarButtonn(BuildContext context) {
     List<Widget> appBarButton = [
-      IconButton(
-          autofocus: true,
-          padding: ScreenSize().checkScreenType(context) == 'small'
-              ? EdgeInsets.all(0)
-              : null,
-          onPressed: () {
-            CustomDialog().info(context, '', 'Do you want Continue', () {});
-          },
-          icon: FittedBox(
-            child: Icon(
-              size:
-                  ScreenSize().checkScreenType(context) == 'small' ? 10 : 20.dp,
-              Icons.local_shipping_rounded,
-              color: white2,
-            ),
-          )),
       IconButton(
           autofocus: true,
           padding: ScreenSize().checkScreenType(context) == 'small'

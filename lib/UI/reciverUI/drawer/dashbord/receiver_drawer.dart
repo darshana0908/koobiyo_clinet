@@ -195,48 +195,7 @@ class _ReciverCustomDrawerWidgetState extends State<ReciverCustomDrawerWidget> {
                                 : titleIndex == 1
                                     ? SizedBox()
                                     : titleIndex == 2
-                                        ? Column(children: [
-                                            tileButton('Add Orders', () {
-                                              BackDrawer().back(context);
-                                              Provider.of<ProviderS>(context,
-                                                      listen: false)
-                                                  .selectedWidet = AddOrder();
-                                              setState(() {
-                                                key = '1';
-                                              });
-                                            }, '1', key),
-                                            tileButton('Upload Orders', () {
-                                              BackDrawer().back(context);
-                                              // Provider.of<ProviderS>(context,
-                                              //             listen: false)
-                                              //         .selectedWidet =
-                                              //     // DataTableScreen();
-
-                                              setState(() {
-                                                key = '2';
-                                              });
-                                            }, '2', key),
-                                            tileButton('View Orders', () {
-                                              BackDrawer().back(context);
-                                              // Provider.of<ProviderS>(context,
-                                              //         listen: false)
-                                              //     .selectedWidet = ViewOrders();
-                                              setState(() {
-                                                key = '3';
-                                              });
-                                            }, '3', key),
-                                            tileButton('Return Receive', () {
-                                              BackDrawer().back(context);
-                                              // Provider.of<ProviderS>(context,
-                                              //             listen: false)
-                                              //         .selectedWidet =
-                                              //     ReturnReceive();
-
-                                              setState(() {
-                                                key = '4';
-                                              });
-                                            }, '4', key)
-                                          ])
+                                        ? SizedBox()
                                         : titleIndex == 3
                                             ? Column(children: [
                                                 tileButton('Payment Summary',
