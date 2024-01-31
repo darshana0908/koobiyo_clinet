@@ -1,5 +1,5 @@
-
 import 'package:client_app/const/color.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -38,15 +38,24 @@ class _MyOderState extends State<MyOder> {
             tabs: [
               Text(
                 'All',
-                style: TextStyle(fontSize: 16.dp, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 15.dp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Roboto'),
               ),
               Text(
                 'To Ship',
-                style: TextStyle(fontSize: 16.dp, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 15.dp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Roboto'),
               ),
               Text(
                 'To Receive',
-                style: TextStyle(fontSize: 16.dp, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 15.dp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Roboto'),
               ),
             ],
           ),
@@ -58,17 +67,17 @@ class _MyOderState extends State<MyOder> {
         ),
         body: TabBarView(
           children: [
-            allOders(
-                'Delivered', 'Placed on', Color.fromARGB(255, 67, 191, 131)),
-            allOders('Processing', 'Get by ', appButtonColorLite),
-            Icon(Icons.directions_car, size: 350),
+            allOders('Delivered', 'Placed on',
+                Color.fromARGB(255, 67, 191, 131), false),
+            allOders('Processing', 'Get by ', appButtonColorLite, false),
+            allOders('Processing', 'Get by ', appButtonColorLite, true),
           ],
         ),
       ),
     );
   }
 
-  Widget allOders(String status, String time, Color color) {
+  Widget allOders(String status, String time, Color color, bool toReceive) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
@@ -126,7 +135,7 @@ class _MyOderState extends State<MyOder> {
                                       style: TextStyle(
                                           fontSize: 12.dp,
                                           fontWeight: FontWeight.bold,
-                                          color: black1),
+                                          color: black2),
                                     ),
                                     Text(
                                       '#210086691242855',
@@ -153,9 +162,9 @@ class _MyOderState extends State<MyOder> {
                             Text(
                               '$time 14 Feb 2023 12:07:10',
                               style: TextStyle(
-                                  fontSize: 12.dp,
-                                  fontWeight: FontWeight.bold,
-                                  color: black1),
+                                  fontSize: 11.dp,
+                                  fontWeight: FontWeight.normal,
+                                  color: black2),
                             ),
                             Divider(),
                             Row(
@@ -211,18 +220,20 @@ class _MyOderState extends State<MyOder> {
                                                       color: black1),
                                                 ),
                                               ),
-                                              Container(
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                child: Text(
-                                                  'Delivered on 17 Feb 2023',
-                                                  style: TextStyle(
-                                                      fontSize: 12.dp,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: black1),
-                                                ),
-                                              ),
+                                              time == 'Placed on'
+                                                  ? Container(
+                                                      alignment:
+                                                          Alignment.centerRight,
+                                                      child: Text(
+                                                        'Delivered on 17 Feb 2023',
+                                                        style: TextStyle(
+                                                            fontSize: 12.dp,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: black1),
+                                                      ),
+                                                    )
+                                                  : SizedBox(),
                                               Container(
                                                 alignment:
                                                     Alignment.centerRight,
@@ -268,35 +279,133 @@ class _MyOderState extends State<MyOder> {
                                                     color: black1),
                                               ),
                                             ),
-                                            Card(
-                                              elevation: 20,
-                                              color: color,
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 12,
-                                                    vertical: 4),
-                                                child: Text(
-                                                  status,
-                                                  style: TextStyle(
-                                                      fontSize: 12.dp,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      color: white),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'Delivered on 17 Feb 2023',
-                                                style: TextStyle(
-                                                    fontSize: 12.dp,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: black1),
-                                              ),
-                                            ),
+                                            toReceive
+                                                ? Column(
+                                                    children: [
+                                                      Container(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Card(
+                                                          elevation: 2,
+                                                          child: Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        12,
+                                                                    vertical:
+                                                                        4),
+                                                            child: Text(
+                                                              'On the way',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      12.dp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  color:
+                                                                      black2),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons
+                                                              .warehouse_outlined),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Container(
+                                                            height: 3,
+                                                            width: w / 14,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    3,
+                                                                    94,
+                                                                    38),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(4.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .local_shipping,
+                                                              color:
+                                                                  Colors.blue,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: w / 14,
+                                                            child: DottedLine(
+                                                              direction: Axis
+                                                                  .horizontal,
+                                                              alignment:
+                                                                  WrapAlignment
+                                                                      .center,
+                                                              lineLength: double
+                                                                  .infinity,
+                                                              lineThickness:
+                                                                  1.0,
+                                                              dashLength: 15.0,
+                                                              dashColor:
+                                                                  Colors.black,
+                                                              dashRadius: 0.0,
+                                                              dashGapLength:
+                                                                  4.0,
+                                                              dashGapColor: Colors
+                                                                  .transparent,
+                                                              dashGapRadius:
+                                                                  0.0,
+                                                            ),
+                                                          ),
+                                                          Icon(
+                                                            Icons.pin_drop,
+                                                            color: Colors.red,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Card(
+                                                    elevation: 20,
+                                                    color: color,
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 12,
+                                                              vertical: 4),
+                                                      child: Text(
+                                                        status,
+                                                        style: TextStyle(
+                                                            fontSize: 12.dp,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color: white),
+                                                      ),
+                                                    ),
+                                                  ),
+                                            time == 'Placed on'
+                                                ? Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Text(
+                                                      'Delivered on 17 Feb 2023',
+                                                      style: TextStyle(
+                                                          fontSize: 12.dp,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: black1),
+                                                    ),
+                                                  )
+                                                : SizedBox()
                                           ],
                                         ),
                                       )
